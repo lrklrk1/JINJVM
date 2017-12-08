@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -7,6 +6,7 @@ public class Main {
     private static String Classpath;
     private static String Class;
     private static String[] Args;
+    private static String jrepath;
 
     public static void main(String args[]) {
 
@@ -15,7 +15,10 @@ public class Main {
         sc.close();
         String[] cmds = cmd.split(" ");
 
-        if(!cmds[0].equals("java")) {
+        List<String> als = new ArrayList<String>();
+        Collections.addAll(als, cmds);
+
+        if(!als.get(0).equals("java")) {
             System.out.println("must start with java");
             return;
         } else if(cmds.length <= 1) {
@@ -23,40 +26,41 @@ public class Main {
             return;
         }
 
-        if(cmds[1].equals("-version")) {
-            System.out.println("version " + Version);
-            return;
-        }
+        int index = 1;
 
-        if(cmds[1].equals("-help")) {
-            System.out.println("java [-option] class [args...]");
-            return;
-        }
-
-        if(cmds[1].equals("-cp") || cmds[1].equals("-classpath")) {
-            if(cmds.length > 3) {
-                Main.Classpath = cmds[2];
-                Main.Class = cmds[3];
-                if(cmds.length - 3 > 0) {
-                    Main.Args = new String[cmds.length - 4];
-                    Main.Args = Arrays.copyOfRange(cmds, 4, cmds.length);
-                } else {
-                    Main.Args = new String[0];
+        for(int i = 0; i < cmds.length; i++) {
+            if(cmds[i].equals("-version")) {
+                System.out.println("version " + Version);
+                return;
+            } else if(cmds[i].equals("-help")) {
+                System.out.println("java [-option] class [args...]");
+                return;
+            }
+            if(cmds[i].equals("-cp") || cmds[i].equals("-classpath")) {
+                try {
+                    Main.Classpath = cmds[++i];
+                    index++;index++;
+                } catch(Exception e) {
+                    System.out.println("miss argument");
                 }
-            } else {
-                System.out.println("miss the classpath");
             }
-        } else {
-            Main.Class = cmds[1];
-            if(cmds.length - 2 > 0) {
-                Main.Args = new String[cmds.length - 2];
-               Main.Args = Arrays.copyOfRange(cmds, 2, cmds.length );
-            } else {
-                Main.Args = new String[0];
+            if(cmds[i].equals("-jre")) {
+                try{
+                    Main.jrepath = cmds[++i];
+                    index++;index++;
+                } catch(Exception e) {
+                    System.out.println("miss argument");
+                }
             }
         }
+        try {
+            Main.Class = cmds[index++];
+            Main.Args = Arrays.copyOfRange(cmds, index, cmds.length );
+        } catch (Exception e) {
+            System.out.println("miss argument");
+        }
 
-        System.out.print("java " + "-classpath " + Main.Classpath + " class " + Main.Class + " args ");
+        System.out.print("java " + "-jre " + Main.jrepath + " -classpath " + Main.Classpath + " class " + Main.Class + " args ");
         for(String s : Main.Args) {
             System.out.print(s + " ");
         }
