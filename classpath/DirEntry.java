@@ -1,19 +1,28 @@
 package classpath;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 
 public class DirEntry implements Entry {
 
-    String absPath;
+    private String absPath;
+    private File file;
 
     @Override
     public byte[] readClass(String className) {
+        File classFile = new File(file, className);
+        if (!classFile.isFile()) {
+//            System.out.println("wrong className");
+            return null;
+        }
         byte[] data = null;
-        File file = new File(absPath, className);
         ByteArrayOutputStream baos = null;
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream(file);
+            fis = new FileInputStream(classFile);
             baos = new ByteArrayOutputStream();
             byte[] temp = new byte[1024];
             while(fis.read(temp) != -1) {
@@ -21,9 +30,23 @@ public class DirEntry implements Entry {
             }
             data = baos.toByteArray();
         } catch (Exception e) {
-            System.out.println("something wrong with reading [DirEntry]");
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (baos != null) {
+                try {
+                    baos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
         return data;
     }
 
@@ -32,15 +55,16 @@ public class DirEntry implements Entry {
         return this.absPath;
     }
 
-    public DirEntry(String path) {
+    DirEntry(String path) {
         try {
-            File file = new File(path);
-            if (!file.isDirectory() || !file.isAbsolute()) {
+            file = new File(path);
+            if (!file.isDirectory()) {
                 System.out.println("this is not a absolute or dictionary");
                 throw new Exception();
             }
+            this.absPath = path;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }
