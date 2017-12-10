@@ -38,6 +38,7 @@ class Cmd {
                     cmd.Classpath = cmds[++i];
                     index++;index++;
                 } catch(Exception e) {
+                    System.exit(1);
                     System.out.println("miss argument");
                 }
             }
@@ -47,6 +48,7 @@ class Cmd {
                     index++;index++;
                 } catch(Exception e) {
                     System.out.println("miss argument");
+                    System.exit(1);
                 }
             }
         }
@@ -55,6 +57,7 @@ class Cmd {
             cmd.Args = Arrays.copyOfRange(cmds, index, cmds.length );
         } catch (Exception e) {
             System.out.println("miss argument");
+            System.exit(1);
         }
 
 

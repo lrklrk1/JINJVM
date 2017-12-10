@@ -1,0 +1,117 @@
+package classfile;
+
+public class ClassFile {
+
+    private JVMU4           magic;
+    private JVMU2           minorVersion;
+    private JVMU2           majorVersion;
+//    private ConstantPool    constantPool;
+    private JVMU2           accessFlag;
+    private JVMU2           thisClass;
+    private JVMU2           superClass;
+    private JVMU2[]         interfaces;
+//    private MemberInfo[]    fields;
+//    private MemberInfo[]    methods;
+//    private AttributeInfo[] attributes;
+
+    public static ClassFile parse(byte[] data) {
+        ClassFile cf = new ClassFile();
+        try {
+            ClassReader reader = new ClassReader(data);
+            cf.reader(reader);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cf;
+    }
+
+    private void reader(ClassReader reader) {
+        this.readAndCheckMagic(reader);
+        this.readAndCheckVersion(reader);
+//        this.constantPool = this.readConstantPool(reader);
+        this.accessFlag = reader.parseU2();
+        this.thisClass = reader.parseU2();
+        this.superClass = reader.parseU2();
+//        this.interfaces = reader.parseU2(reader, this.constantPool);
+//        this.fields = this.readMembers();
+//        this.methods = this.readMembers(reader, this.constantPool);
+//        this.attributes = this.readAttributes(reader, this.constantPool);
+    }
+
+
+    private void readAndCheckMagic(ClassReader reader) {
+        this.magic = reader.parseU4();
+        if(!String.format("%02x", magic.u4[0]).equals("ca") ||
+                !String.format("%02x", magic.u4[1]).equals("fe") ||
+                !String.format("%02x", magic.u4[2]).equals("ba") ||
+                !String.format("%02x", magic.u4[3]).equals("be")) {
+        } else {
+            System.out.print(String.format("%02x", magic.u4[0]));
+            System.out.print(String.format("%02x", magic.u4[1]));
+            System.out.print(String.format("%02x", magic.u4[2]));
+            System.out.println(String.format("%02x", magic.u4[3]));
+        }
+    }
+
+    private void readAndCheckVersion(ClassReader reader) {
+        this.minorVersion = reader.parseU2();
+        this.majorVersion = reader.parseU2();
+        switch (majorVersion.u2[1]) {
+            case 45:
+                System.out.println(majorVersion.u2[1] + " " + minorVersion.u2[1]);
+                return;
+            case 46:
+            case 47:
+            case 48:
+            case 49:
+            case 50:
+            case 51:
+            case 52:
+                if(minorVersion.u2[0] == 0) {
+                    System.out.println(majorVersion.u2[1] + minorVersion.u2[1]);
+                    return;
+                }
+            default:
+                System.out.println("wrong version number");
+                System.out.println(majorVersion.u2[1] + minorVersion.u2[1]);
+                System.exit(1);
+        }
+    }
+
+    public JVMU2 getMinorVersion() {
+        return this.minorVersion;
+    }
+
+    public JVMU2 getMajorVersion() {
+        return this.majorVersion;
+    }
+
+//    public ConstantPool getConstantPool() {
+//        return this.constantPool;
+//    }
+
+    public JVMU2 getAccessFlag() {
+        return this.accessFlag;
+    }
+
+//    public MemberInfo[] getFields() {
+//        return this.memberInfos;
+//    }
+//
+//    public MemberInfo[] getMethods() {
+//        return this.methods;
+//    }
+
+    public String getClassName() {
+        return null;
+    }
+
+    public String getSuperClassName() {
+        return null;
+    }
+
+    public String[] getInterface() {
+        return null;
+    }
+
+}
