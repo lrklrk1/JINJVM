@@ -5,7 +5,8 @@ import java.io.IOException;
 
 public class test {
 
-    public static void main(String args[]) {
+
+    private void tt() {
         String s = "C:" + File.separator + "Users" + File.separator + "lrk" + File.separator +
                 "Desktop" + File.separator + "a" + File.separator + "JsonArray.class";
         File file = new File(s);
@@ -47,6 +48,8 @@ public class test {
         }
     }
 
+
+
     protected static char[] encodeHex(byte[] data, char[] toDigits) {
         int l = data.length;
         char[] out = new char[l << 1];
@@ -60,4 +63,13 @@ public class test {
     private static final char[] DIGITS_LOWER = { '0', '1', '2', '3', '4', '5',
             '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
+
+    public static void main(String args[]) {
+        byte[] b = new byte[2];
+        b[0] = 2;
+        b[1] = 8;
+        String result = String.format("%2x", b[0]) + String.format("%2x", b[1]);
+        System.out.println(result);
+        System.out.println(Integer.parseInt(result));
+    }
 }

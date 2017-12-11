@@ -15,4 +15,8 @@ public class JVMU1 {
         return this.u1;
     }
 
+    public int getInt() {
+        return (int)u1[0] & 0xff;
+    }
+
 }

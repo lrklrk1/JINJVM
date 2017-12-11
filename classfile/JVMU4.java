@@ -18,4 +18,17 @@ public class JVMU4 {
         return this.u4;
     }
 
+    public int getInt() {
+        int s = 0;
+        int s0 = u4[0] & 0xff;
+        int s1 = u4[1] & 0xff;
+        int s2 = u4[2] & 0xff;
+        int s3 = u4[3] & 0xff;
+        s3 <<= 24;
+        s2 <<= 16;
+        s1 <<= 8;
+        s = s0 | s1 | s2 | s3;
+        return s;
+    }
+
 }
