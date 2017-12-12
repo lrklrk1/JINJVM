@@ -35,12 +35,13 @@ public class ConstantPool {
     }
 
     String getName(JVMU2 index) {
-
-        return null;
+        ConstantNameAndTypeInfo cati = (ConstantNameAndTypeInfo) this.getConstantInfo(index);
+        return this.getUtf(cati.getName());
     }
 
     String getType(JVMU2 index) {
-        return null;
+        ConstantNameAndTypeInfo cati = (ConstantNameAndTypeInfo) this.getConstantInfo(index);
+        return this.getUtf(cati.getDescriptorIndex());
     }
 
     String getClassName(JVMU2 index) {

@@ -10,8 +10,8 @@ public class ClassFile {
     private JVMU2           thisClass;
     private JVMU2           superClass;
     private JVMU2[]         interfaces;
-//    private MemberInfo[]    fields;
-//    private MemberInfo[]    methods;
+    private MemberInfo[]    fields;
+    private MemberInfo[]    methods;
 //    private AttributeInfo[] attributes;
 
     public static ClassFile parse(byte[] data) {
@@ -33,8 +33,8 @@ public class ClassFile {
         this.thisClass = reader.parseU2();
         this.superClass = reader.parseU2();
         this.interfaces = reader.parseU2s();
-//        this.fields = this.readMembers();
-//        this.methods = this.readMembers(reader, this.constantPool);
+        this.fields = this.readMembers(reader, this.constantPool);
+        this.methods = this.readMembers(reader, this.constantPool);
 //        this.attributes = this.readAttributes(reader, this.constantPool);
     }
 
@@ -83,8 +83,25 @@ public class ClassFile {
         for(ConstantInfo con : cp.constantInfos) {
             System.out.println(con);
         }
-
         return cp;
+    }
+
+    private MemberInfo[] readMembers(ClassReader reader, ConstantPool constantPool) {
+        JVMU2 memberCount = reader.parseU2();
+        MemberInfo[] members = new MemberInfo[memberCount.getInt()];
+        for (MemberInfo member : members) {
+            member = readMember(reader, this.constantPool);
+        }
+        return members;
+    }
+
+    private MemberInfo readMember(ClassReader reader, ConstantPool constantPool) {
+        MemberInfo memberInfo = new MemberInfo(this.constantPool,
+                                                reader.parseU2(),
+                                                reader.parseU2(),
+                                                reader.parseU2() );
+//                                                readAttributes(reader, this.constantPool));
+        return memberInfo;
     }
 
     public JVMU2 getMinorVersion() {
@@ -103,13 +120,13 @@ public class ClassFile {
         return this.accessFlag.toString();
     }
 
-//    public MemberInfo[] getFields() {
-//        return this.memberInfos;
-//    }
-//
-//    public MemberInfo[] getMethods() {
-//        return this.methods;
-//    }
+    public MemberInfo[] getFields() {
+        return this.fields;
+    }
+
+    public MemberInfo[] getMethods() {
+        return this.methods;
+    }
 
     public String getThisClassName() {
         return this.constantPool.getClassName(this.thisClass);
