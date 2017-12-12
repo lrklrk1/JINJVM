@@ -2,10 +2,17 @@ package classfile;
 
 public class ConstantInfoLong extends ConstantInfo implements Info {
 
-    byte[] low;
-    byte[] high;
-    long value;
+    private byte[] low;
+    private byte[] high;
+    private long value;
 
+    ConstantInfoLong() {
+        this.tag = TAG.CONSTANT_Long;
+    }
+
+    public long getLong() {
+        return this.value;
+    }
 
     @Override
     public void readInfo(ClassReader reader) {
@@ -30,5 +37,6 @@ public class ConstantInfoLong extends ConstantInfo implements Info {
         s7 <<= 8 * 7;
         s = s0 | s1 | s2 | s3 | s4 | s5 | s6 | s7;
         this.value = s;
+        System.out.println(this.tag + " " + this.value);
     }
 }

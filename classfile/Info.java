@@ -21,11 +21,11 @@ public interface Info {
             case CONSTANT_Class:
                 return new ConstantClassInfo(cp);
             case CONSTANT_Fieldref:
-                return (ConstantFieldrefInfo) new ConstantMemberrefInfo(cp);
+                return new ConstantFieldrefInfo(cp);
             case CONSTANT_Methodref:
-                return (ConstantMethodrefInfo) new ConstantMemberrefInfo(cp);
+                return new ConstantMethodrefInfo(cp);
             case CONSTANT_InterfaceMethodref:
-                return (ConstantInterfaceMethodrefInfo) new ConstantMemberrefInfo(cp);
+                return new ConstantInterfaceMethodrefInfo(cp);
             case CONSTANT_MethodType:
                 return new ConstantMethodTypeInfo();
             case CONSTANT_NameAndType:

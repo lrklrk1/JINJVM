@@ -5,7 +5,7 @@ public class ClassFile {
     private JVMU4           magic;
     private JVMU2           minorVersion;
     private JVMU2           majorVersion;
-//    private ConstantPool    constantPool;
+    private ConstantPool    constantPool;
     private JVMU2           accessFlag;
     private JVMU2           thisClass;
     private JVMU2           superClass;
@@ -28,7 +28,7 @@ public class ClassFile {
     private void reader(ClassReader reader) {
         this.readAndCheckMagic(reader);
         this.readAndCheckVersion(reader);
-//        this.constantPool = this.readConstantPool(reader);
+        this.constantPool = this.readConstantPool(reader);
         this.accessFlag = reader.parseU2();
         this.thisClass = reader.parseU2();
         this.superClass = reader.parseU2();
@@ -78,6 +78,15 @@ public class ClassFile {
         }
     }
 
+    private ConstantPool readConstantPool(ClassReader reader) {
+        ConstantPool cp = ConstantPool.readConstantPool(reader);
+        for(ConstantInfo con : cp.constantInfos) {
+            System.out.println(con);
+        }
+
+        return cp;
+    }
+
     public JVMU2 getMinorVersion() {
         return this.minorVersion;
     }
@@ -86,9 +95,9 @@ public class ClassFile {
         return this.majorVersion;
     }
 
-//    public ConstantPool getConstantPool() {
-//        return this.constantPool;
-//    }
+    public ConstantPool getConstantPool() {
+        return this.constantPool;
+    }
 
     public JVMU2 getAccessFlag() {
         return this.accessFlag;

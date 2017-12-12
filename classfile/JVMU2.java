@@ -17,8 +17,8 @@ public class JVMU2 {
     }
 
     int getInt() {
-        int low = u2[0] & 0xff;
-        int high = u2[1] & 0xff;
+        int high = u2[0] & 0xff;
+        int low = u2[1] & 0xff;
         return ( high << 8 | low );
     }
 

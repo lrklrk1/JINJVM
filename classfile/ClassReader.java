@@ -54,4 +54,16 @@ public class ClassReader {
         return jvmu4;
     }
 
+    byte[] parseBytes(int length) {
+        if (length + this.index < data.length) {
+            byte[] temp = Arrays.copyOfRange(data, this.index, this.index + length);
+            this.index += length;
+            return temp;
+        } else {
+            System.out.println("index out of bounds " + this.index + " " + index);
+            System.exit(1);
+            return null;
+        }
+    }
+
 }
