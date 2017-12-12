@@ -22,4 +22,9 @@ public class JVMU2 {
         return ( high << 8 | low );
     }
 
+    @Override
+    public String toString() {
+        return String.format("%02x", this.u2[0]) + String.format("%02x", this.u2[1]);
+    }
+
 }

@@ -35,10 +35,20 @@ public class ClassReader {
             jvmu2 = new JVMU2(temp);
         } else {
             System.out.println("index out of class data");
+            System.out.println(0);
             return null;
         }
         index += 2;
         return jvmu2;
+    }
+
+    JVMU2[] parseU2s() {
+        JVMU2 jvmu2 = this.parseU2();
+        JVMU2[] jvmu2s = new JVMU2[jvmu2.getInt()];
+        for (JVMU2 j : jvmu2s) {
+            j = this.parseU2();
+        }
+        return jvmu2s;
     }
 
     JVMU4 parseU4() {

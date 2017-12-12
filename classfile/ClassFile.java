@@ -32,7 +32,7 @@ public class ClassFile {
         this.accessFlag = reader.parseU2();
         this.thisClass = reader.parseU2();
         this.superClass = reader.parseU2();
-//        this.interfaces = reader.parseU2(reader, this.constantPool);
+        this.interfaces = reader.parseU2s();
 //        this.fields = this.readMembers();
 //        this.methods = this.readMembers(reader, this.constantPool);
 //        this.attributes = this.readAttributes(reader, this.constantPool);
@@ -99,8 +99,8 @@ public class ClassFile {
         return this.constantPool;
     }
 
-    public JVMU2 getAccessFlag() {
-        return this.accessFlag;
+    public String getAccessFlag() {
+        return this.accessFlag.toString();
     }
 
 //    public MemberInfo[] getFields() {
@@ -111,16 +111,20 @@ public class ClassFile {
 //        return this.methods;
 //    }
 
-    public String getClassName() {
-        return null;
+    public String getThisClassName() {
+        return this.constantPool.getClassName(this.thisClass);
     }
 
     public String getSuperClassName() {
-        return null;
+        return this.constantPool.getClassName(this.superClass);
     }
 
     public String[] getInterface() {
-        return null;
+        String[] interfaces = new String[this.interfaces.length];
+        for (int i=0; i < interfaces.length; i++) {
+            interfaces[i] = this.constantPool.getClassName(this.interfaces[i]);
+        }
+        return interfaces;
     }
 
 }

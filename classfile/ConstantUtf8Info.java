@@ -24,6 +24,7 @@ public class ConstantUtf8Info extends ConstantInfo implements Info {
             System.out.println(this.tag + " " + this.value);
         } catch (Exception e) {
             e.printStackTrace();
+
         }
     }
 
