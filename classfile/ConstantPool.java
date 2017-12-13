@@ -31,6 +31,16 @@ public class ConstantPool {
             return this.constantInfos[index.getInt()];
         }
         System.out.println("Invalid constant pool index");
+        System.exit(0);
+        return null;
+    }
+
+    ConstantInfo getConstantInfo(int index) {
+        if(this.constantInfos[index] != null) {
+            return this.constantInfos[index];
+        }
+        System.out.println("Invalid constant pool index");
+        System.exit(0);
         return null;
     }
 
@@ -50,6 +60,11 @@ public class ConstantPool {
     }
 
     String getUtf(JVMU2 index) {
+        ConstantUtf8Info cui = (ConstantUtf8Info)this.getConstantInfo(index);
+        return cui.getString();
+    }
+
+    String getUtf(int index) {
         ConstantUtf8Info cui = (ConstantUtf8Info)this.getConstantInfo(index);
         return cui.getString();
     }

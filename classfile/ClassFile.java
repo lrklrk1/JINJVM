@@ -33,15 +33,15 @@ public class ClassFile {
         this.thisClass = reader.parseU2();
         this.superClass = reader.parseU2();
         this.interfaces = reader.parseU2s();
-        this.fields = this.readMembers(reader, this.constantPool);
-        this.methods = this.readMembers(reader, this.constantPool);
-//        this.attributes = this.readAttributes(reader, this.constantPool);
+        this.fields = this.readMembers(reader);
+        this.methods = this.readMembers(reader);
+//        this.attributes = this.readAttributes(reader);
     }
 
 
     private void readAndCheckMagic(ClassReader reader) {
         this.magic = reader.parseU4();
-        if(!String.format("%02x", magic.u4[0]).equals("ca") ||
+        if (!String.format("%02x", magic.u4[0]).equals("ca") ||
                 !String.format("%02x", magic.u4[1]).equals("fe") ||
                 !String.format("%02x", magic.u4[2]).equals("ba") ||
                 !String.format("%02x", magic.u4[3]).equals("be")) {
@@ -86,16 +86,16 @@ public class ClassFile {
         return cp;
     }
 
-    private MemberInfo[] readMembers(ClassReader reader, ConstantPool constantPool) {
+    private MemberInfo[] readMembers(ClassReader reader) {
         JVMU2 memberCount = reader.parseU2();
         MemberInfo[] members = new MemberInfo[memberCount.getInt()];
-        for (MemberInfo member : members) {
-            member = readMember(reader, this.constantPool);
+        for (int i=0; i < members.length; i++) {
+            members[i] = readMember(reader);
         }
         return members;
     }
 
-    private MemberInfo readMember(ClassReader reader, ConstantPool constantPool) {
+    private MemberInfo readMember(ClassReader reader) {
         MemberInfo memberInfo = new MemberInfo(this.constantPool,
                                                 reader.parseU2(),
                                                 reader.parseU2(),
