@@ -1,4 +1,7 @@
+import classfile.Attribute;
+import classfile.AttributeInfo;
 import classfile.ClassFile;
+import classfile.MemberInfo;
 import classpath.Classpath;
 
 import java.io.File;
@@ -25,6 +28,24 @@ public class Main {
         Classpath cp = Classpath.parse(cmd.Jrepath, cmd.Classpath);
         byte[] data = cp.readClass(cmd.Class);
         ClassFile cf = ClassFile.parse(data);
+        System.out.println();
+        System.out.println(cf.getAccessFlag());
+        System.out.println(cf.getThisClassName() + "  class");
+        System.out.println(cf.getSuperClassName() + "   superClass");
+        System.out.println(cf.getInterfaceCount());
+        System.out.println(cf.getInterface());
+        for (MemberInfo mi : cf.getFields()) {
+            System.out.println(mi.getName() + "  field " + mi.getDescriptor());
+            System.out.println(mi.getAttributeCount());
+        }
+        for (MemberInfo mi : cf.getMethods()) {
+            System.out.println(mi.getName() + "  method " + mi.getDescriptor());
+            System.out.println(mi.getAttributeCount());
+        }
+
+        for (AttributeInfo a : cf.getAttributes()) {
+            System.out.println(a.toString());
+        }
 
     }
 

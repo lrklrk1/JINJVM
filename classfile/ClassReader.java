@@ -70,7 +70,7 @@ public class ClassReader {
             this.index += length;
             return temp;
         } else {
-            System.out.println("index out of bounds " + this.index + " " + index);
+            System.out.println("index out of bounds " + this.index + " " + length);
             System.exit(1);
             return null;
         }

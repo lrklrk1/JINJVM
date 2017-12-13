@@ -1,6 +1,6 @@
 package classfile;
 
-public class SourceFileAttribute implements Attribute {
+public class SourceFileAttribute implements AttributeInfo {
 
     ConstantPool cp;
     int sourceFileIndex;

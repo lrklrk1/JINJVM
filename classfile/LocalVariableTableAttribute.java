@@ -1,6 +1,6 @@
 package classfile;
 
-public class LocalVariableTableAttribute implements Attribute {
+public class LocalVariableTableAttribute implements AttributeInfo {
 
     LocalVariableTableEntry[] localVariableTable;
 

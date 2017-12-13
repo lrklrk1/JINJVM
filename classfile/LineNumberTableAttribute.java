@@ -1,7 +1,7 @@
 package classfile;
 
 public class
-LineNumberTableAttribute implements Attribute {
+LineNumberTableAttribute implements AttributeInfo {
 
     LineNumberTableEntry[] lineNumberTable;
 

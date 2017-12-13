@@ -1,23 +1,30 @@
 package classfile;
 
-public class AttributeInfo {
+public interface AttributeInfo {
 
-    static Attribute[] readAttributes(ClassReader reader, ConstantPool cp) {
-        int attributesCount = reader.parseU2().getInt();
-        Attribute[] attributes = new Attribute[attributesCount];
-        for(int i=0; i < attributesCount; i++) {
-            attributes[i] = readAttribute(reader, cp);
+    void readInfo(ClassReader reader);
+
+    static AttributeInfo newAttribute(String name, int length, ConstantPool cp) {
+
+        switch (name) {
+            case "Code":
+                return new CodeAttribute(cp);
+            case "ConstantValue":
+                return new ConstantValueAttribute();
+            case "Synthetic":
+            case "Deprecated":
+                return new MarkerAttribute();
+            case "Exceptions":
+                return new ExceptionAttribute();
+            case "LineNumberTable":
+                return new LineNumberTableAttribute();
+            case "LocalVariableTable":
+                return new LocalVariableTableAttribute();
+            case "SourceFile":
+                return new SourceFileAttribute(cp);
+            default:
+                return new UnparsedAttribute(name, length);
         }
-        return attributes;
-    }
-
-    static Attribute readAttribute(ClassReader reader, ConstantPool cp) {
-        JVMU2 attrNameIndex = reader.parseU2();
-        String attrName = cp.getUtf(attrNameIndex);
-        int length = reader.parseU4().getInt();
-        Attribute ai = Attribute.newAttribute(attrName, length, cp);
-        ai.readInfo(reader);
-        return ai;
     }
 
 }

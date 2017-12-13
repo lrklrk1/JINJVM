@@ -1,6 +1,6 @@
 package classfile;
 
-public class ExceptionAttribute implements Attribute {
+public class ExceptionAttribute implements AttributeInfo {
 
     JVMU2[] exceptionIndexTable;
 

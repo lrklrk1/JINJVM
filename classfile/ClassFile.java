@@ -12,7 +12,7 @@ public class ClassFile {
     private JVMU2[]         interfaces;
     private MemberInfo[]    fields;
     private MemberInfo[]    methods;
-//    private AttributeInfo[] attributes;
+    private AttributeInfo[] attributes;
 
     public static ClassFile parse(byte[] data) {
         ClassFile cf = new ClassFile();
@@ -35,8 +35,10 @@ public class ClassFile {
         this.interfaces = reader.parseU2s();
         this.fields = this.readMembers(reader);
         this.methods = this.readMembers(reader);
-//        this.attributes = this.readAttributes(reader);
+        this.attributes = Attribute.readAttributes(reader, this.constantPool);
     }
+
+
 
 
     private void readAndCheckMagic(ClassReader reader) {
@@ -99,8 +101,8 @@ public class ClassFile {
         MemberInfo memberInfo = new MemberInfo(this.constantPool,
                                                 reader.parseU2(),
                                                 reader.parseU2(),
-                                                reader.parseU2() );
-//                                                readAttributes(reader, this.constantPool));
+                                                reader.parseU2(),
+                                                Attribute.readAttributes(reader, this.constantPool));
         return memberInfo;
     }
 
@@ -144,4 +146,11 @@ public class ClassFile {
         return interfaces;
     }
 
+    public String getInterfaceCount() {
+        return this.interfaces.length + "";
+    }
+
+    public AttributeInfo[] getAttributes() {
+        return this.attributes;
+    }
 }

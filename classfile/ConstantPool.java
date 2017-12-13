@@ -8,8 +8,8 @@ public class ConstantPool {
     static ConstantPool readConstantPool(ClassReader reader) {
         ConstantPool cp = new ConstantPool();
         cp.constantPoolCount = reader.parseU2().getInt();
-        cp.constantInfos = new ConstantInfo[cp.constantPoolCount - 1];
-        for (int i = 0; i < cp.constantPoolCount - 1; i++) {
+        cp.constantInfos = new ConstantInfo[cp.constantPoolCount];
+        for (int i = 1; i < cp.constantPoolCount; i++) {
             cp.constantInfos[i] = cp.readConstantInfo(reader, cp);
             if(cp.constantInfos[i].tag.equals(ConstantInfo.TAG.CONSTANT_Double) ||
                     cp.constantInfos[i].equals(ConstantInfo.TAG.CONSTANT_Float)) {

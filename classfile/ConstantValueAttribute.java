@@ -1,6 +1,6 @@
 package classfile;
 
-public class ConstantValueAttribute implements Attribute {
+public class ConstantValueAttribute implements AttributeInfo {
 
     int constantValueIndex;
 

@@ -1,6 +1,6 @@
 package classfile;
 
-public class MarkerAttribute implements Attribute {
+public class MarkerAttribute implements AttributeInfo {
     @Override
     public void readInfo(ClassReader reader) {
 
