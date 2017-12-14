@@ -60,7 +60,7 @@ public class ClassFile {
         this.majorVersion = reader.parseU2();
         switch (majorVersion.u2[1]) {
             case 45:
-                System.out.println(majorVersion.u2[1] + " " + minorVersion.u2[1]);
+//                System.out.println(majorVersion.u2[1] + " " + minorVersion.u2[1]);
                 return;
             case 46:
             case 47:
@@ -69,22 +69,23 @@ public class ClassFile {
             case 50:
             case 51:
             case 52:
-                if(minorVersion.u2[0] == 0) {
-                    System.out.println(majorVersion.u2[1] + minorVersion.u2[1]);
-                    return;
-                }
+//                if(minorVersion.u2[0] == 0) {
+//                    System.out.println(majorVersion.u2[1] + minorVersion.u2[1]);
+//                    return;
+//                }
+                return;
             default:
                 System.out.println("wrong version number");
-                System.out.println(majorVersion.u2[1] + minorVersion.u2[1]);
+                System.out.println(majorVersion.u2[1] + " " + minorVersion.u2[1]);
                 System.exit(1);
         }
     }
 
     private ConstantPool readConstantPool(ClassReader reader) {
         ConstantPool cp = ConstantPool.readConstantPool(reader);
-        for(ConstantInfo con : cp.constantInfos) {
-            System.out.println(con);
-        }
+//        for(ConstantInfo con : cp.constantInfos) {
+//            System.out.println(con);
+//        }
         return cp;
     }
 
