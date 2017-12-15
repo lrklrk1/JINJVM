@@ -13,10 +13,10 @@ public class ConstantClassInfo extends ConstantInfo implements Info {
     @Override
     public void readInfo(ClassReader reader) {
         this.nameIndex = reader.parseU2();
-        System.out.println(this.tag + " " + this.nameIndex);
+        System.out.println(tag + " " + nameIndex);
     }
 
     String getName() {
-        return this.cp.getUtf(this.nameIndex);
+        return cp.getUtf(nameIndex);
     }
 }

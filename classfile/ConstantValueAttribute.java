@@ -10,6 +10,6 @@ public class ConstantValueAttribute implements AttributeInfo {
     }
 
     public int getConstantValueIndex() {
-        return this.constantValueIndex;
+        return constantValueIndex;
     }
 }

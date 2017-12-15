@@ -26,23 +26,5 @@ public interface Entry {
         return new DirEntry(path);
 
     }
-//
-//    default byte[] getByteFromFile(File file) {
-//        byte[] data = null;
-//        ByteArrayOutputStream baos = null;
-//        FileInputStream fis = null;
-//        try {
-//            fis = new FileInputStream(file);
-//            baos = new ByteArrayOutputStream();
-//            byte[] temp = new byte[1024];
-//            while(fis.read(temp) != -1) {
-//                baos.write(temp);
-//            }
-//            data = baos.toByteArray();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return data;
-//    }
 
 }

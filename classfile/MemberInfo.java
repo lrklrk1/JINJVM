@@ -17,15 +17,15 @@ public class MemberInfo {
     }
 
     public String getName() {
-        return this.constantPool.getUtf(this.nameIndex);
+        return constantPool.getUtf(nameIndex);
     }
 
     public String getDescriptor() {
-        return this.constantPool.getUtf(this.deacriptorIndex);
+        return constantPool.getUtf(deacriptorIndex);
     }
 
     public String getAttributeCount() {
-        return this.attributes.length + "";
+        return attributes.length + "";
     }
 
 }

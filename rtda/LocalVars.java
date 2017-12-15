@@ -13,11 +13,11 @@ public class LocalVars {
     }
 
     public void setInt(int index, int value) {
-        this.localVars[index].num = value;
+        localVars[index].num = value;
     }
 
     public int getInt(int index) {
-        return this.localVars[index].num;
+        return localVars[index].num;
     }
 
     public void setFloat(int index, float value) {
@@ -39,20 +39,20 @@ public class LocalVars {
 
     public void setDouble(int index, double value) {
         long temp = Double.doubleToLongBits(value);
-        this.setLong(index, temp);
+        setLong(index, temp);
     }
 
     public double getDouble(int index) {
-        long temp = this.getLong(index);
+        long temp = getLong(index);
         return Double.longBitsToDouble(temp);
     }
 
     public void setRef(int index, object ref) {
-        this.localVars[index].ref = ref;
+        localVars[index].ref = ref;
     }
 
     public object getRef(int index) {
-        return this.localVars[index].ref;
+        return localVars[index].ref;
     }
 
 }

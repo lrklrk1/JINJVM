@@ -36,7 +36,7 @@ public class Stack {
         if (top == null) {
             System.out.println("jvm stack is empty");
         }
-        return this.top;
+        return top;
     }
 
 }

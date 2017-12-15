@@ -28,14 +28,14 @@ public class ClassFile {
     private void reader(ClassReader reader) {
         this.readAndCheckMagic(reader);
         this.readAndCheckVersion(reader);
-        this.constantPool = this.readConstantPool(reader);
+        this.constantPool = readConstantPool(reader);
         this.accessFlag = reader.parseU2();
         this.thisClass = reader.parseU2();
         this.superClass = reader.parseU2();
         this.interfaces = reader.parseU2s();
-        this.fields = this.readMembers(reader);
-        this.methods = this.readMembers(reader);
-        this.attributes = Attribute.readAttributes(reader, this.constantPool);
+        this.fields = readMembers(reader);
+        this.methods = readMembers(reader);
+        this.attributes = Attribute.readAttributes(reader, constantPool);
     }
 
 
@@ -99,59 +99,59 @@ public class ClassFile {
     }
 
     private MemberInfo readMember(ClassReader reader) {
-        MemberInfo memberInfo = new MemberInfo(this.constantPool,
+        MemberInfo memberInfo = new MemberInfo(constantPool,
                                                 reader.parseU2(),
                                                 reader.parseU2(),
                                                 reader.parseU2(),
-                                                Attribute.readAttributes(reader, this.constantPool));
+                                                Attribute.readAttributes(reader, constantPool));
         return memberInfo;
     }
 
     public JVMU2 getMinorVersion() {
-        return this.minorVersion;
+        return minorVersion;
     }
 
     public JVMU2 getMajorVersion() {
-        return this.majorVersion;
+        return majorVersion;
     }
 
     public ConstantPool getConstantPool() {
-        return this.constantPool;
+        return constantPool;
     }
 
     public String getAccessFlag() {
-        return this.accessFlag.toString();
+        return accessFlag.toString();
     }
 
     public MemberInfo[] getFields() {
-        return this.fields;
+        return fields;
     }
 
     public MemberInfo[] getMethods() {
-        return this.methods;
+        return methods;
     }
 
     public String getThisClassName() {
-        return this.constantPool.getClassName(this.thisClass);
+        return constantPool.getClassName(thisClass);
     }
 
     public String getSuperClassName() {
-        return this.constantPool.getClassName(this.superClass);
+        return constantPool.getClassName(superClass);
     }
 
     public String[] getInterface() {
         String[] interfaces = new String[this.interfaces.length];
         for (int i=0; i < interfaces.length; i++) {
-            interfaces[i] = this.constantPool.getClassName(this.interfaces[i]);
+            interfaces[i] = constantPool.getClassName(this.interfaces[i]);
         }
         return interfaces;
     }
 
     public String getInterfaceCount() {
-        return this.interfaces.length + "";
+        return interfaces.length + "";
     }
 
     public AttributeInfo[] getAttributes() {
-        return this.attributes;
+        return attributes;
     }
 }

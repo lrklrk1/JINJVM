@@ -27,8 +27,8 @@ public class ConstantPool {
     }
 
     ConstantInfo getConstantInfo(JVMU2 index) {
-        if (this.constantInfos[index.getInt()] != null) {
-            return this.constantInfos[index.getInt()];
+        if (constantInfos[index.getInt()] != null) {
+            return constantInfos[index.getInt()];
         }
         System.out.println("Invalid constant pool index");
         System.exit(0);
@@ -45,27 +45,27 @@ public class ConstantPool {
     }
 
     String getName(JVMU2 index) {
-        ConstantNameAndTypeInfo cati = (ConstantNameAndTypeInfo) this.getConstantInfo(index);
+        ConstantNameAndTypeInfo cati = (ConstantNameAndTypeInfo) getConstantInfo(index);
         return this.getUtf(cati.getName());
     }
 
     String getType(JVMU2 index) {
-        ConstantNameAndTypeInfo cati = (ConstantNameAndTypeInfo) this.getConstantInfo(index);
+        ConstantNameAndTypeInfo cati = (ConstantNameAndTypeInfo) getConstantInfo(index);
         return this.getUtf(cati.getDescriptorIndex());
     }
 
     String getClassName(JVMU2 index) {
-        ConstantClassInfo cci = (ConstantClassInfo) this.getConstantInfo(index);
+        ConstantClassInfo cci = (ConstantClassInfo) getConstantInfo(index);
         return cci.getName();
     }
 
     String getUtf(JVMU2 index) {
-        ConstantUtf8Info cui = (ConstantUtf8Info)this.getConstantInfo(index);
+        ConstantUtf8Info cui = (ConstantUtf8Info)getConstantInfo(index);
         return cui.getString();
     }
 
     String getUtf(int index) {
-        ConstantUtf8Info cui = (ConstantUtf8Info)this.getConstantInfo(index);
+        ConstantUtf8Info cui = (ConstantUtf8Info)getConstantInfo(index);
         return cui.getString();
     }
 

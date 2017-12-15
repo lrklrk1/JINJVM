@@ -11,7 +11,7 @@ public class ConstantUtf8Info extends ConstantInfo implements Info {
     }
 
     String getString() {
-        return this.value;
+        return value;
     }
 
     @Override
@@ -19,9 +19,9 @@ public class ConstantUtf8Info extends ConstantInfo implements Info {
         this.length = reader.parseU2().getInt();
         this.bytes = reader.parseBytes(length);
         try {
-            this.convertMUTF8(bytes);
-            this.value = new String(bytes, "UTF-8");
-            System.out.println(this.tag + " " + this.value);
+            convertMUTF8(bytes);
+            value = new String(bytes, "UTF-8");
+            System.out.println(tag + " " + value);
         } catch (Exception e) {
             e.printStackTrace();
 

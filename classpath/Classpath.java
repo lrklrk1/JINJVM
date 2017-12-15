@@ -48,20 +48,20 @@ public class Classpath {
         if(cpOpt.equals("")) {
             cpOpt = ".";
         }
-        this.userClasspath = Entry.newEntry(cpOpt);
+        userClasspath = Entry.newEntry(cpOpt);
     }
 
     public byte[] readClass(String className) {
         className += ".class";
-        byte[] data = this.bootClasspath.readClass(className);
+        byte[] data = bootClasspath.readClass(className);
         if (data != null) {
             return data;
         }
-        data = this.extClasspath.readClass(className);
+        data = extClasspath.readClass(className);
         if (data != null) {
             return data;
         }
-        return this.userClasspath.readClass(className);
+        return userClasspath.readClass(className);
     }
 //
 //    public String string() {

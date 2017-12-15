@@ -11,6 +11,6 @@ public class ConstantInfoFloat extends ConstantInfo implements Info {
     @Override
     public void readInfo(ClassReader reader) {
         this.value = (float)reader.parseU4().getInt();
-        System.out.println(this.tag + " " + this.value);
+        System.out.println(tag + " " + value);
     }
 }

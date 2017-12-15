@@ -43,10 +43,10 @@ public class ClassReader {
     }
 
     JVMU2[] parseU2s() {
-        JVMU2 jvmu2 = this.parseU2();
+        JVMU2 jvmu2 = parseU2();
         JVMU2[] jvmu2s = new JVMU2[jvmu2.getInt()];
         for (JVMU2 j : jvmu2s) {
-            j = this.parseU2();
+            j = parseU2();
         }
         return jvmu2s;
     }
@@ -65,12 +65,12 @@ public class ClassReader {
     }
 
     byte[] parseBytes(int length) {
-        if (length + this.index < data.length) {
-            byte[] temp = Arrays.copyOfRange(data, this.index, this.index + length);
-            this.index += length;
+        if (length + index < data.length) {
+            byte[] temp = Arrays.copyOfRange(data, index, index + length);
+            index += length;
             return temp;
         } else {
-            System.out.println("index out of bounds " + this.index + " " + length);
+            System.out.println("index out of bounds " + index + " " + length);
             System.exit(1);
             return null;
         }

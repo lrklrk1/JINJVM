@@ -16,7 +16,7 @@ public class CodeAttribute implements AttributeInfo {
         int codelength = reader.parseU4().getInt();
         this.code = reader.parseBytes(codelength);
         this.exceptionTable = readExceptionTable(reader);
-        this.attributes = Attribute.readAttributes(reader, this.cp);
+        this.attributes = Attribute.readAttributes(reader, cp);
     }
 
     private ExceptionTableEntry[] readExceptionTable(ClassReader reader) {

@@ -52,7 +52,7 @@ public class DirEntry implements Entry {
 
     @Override
     public String string() {
-        return this.absPath;
+        return absPath;
     }
 
     DirEntry(String path) {

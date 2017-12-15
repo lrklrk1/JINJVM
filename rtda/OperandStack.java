@@ -7,26 +7,26 @@ public class OperandStack {
 
     OperandStack(int maxStack) {
         assert(maxStack > 0);
-        this.slots = new Slot[maxStack];
+        slots = new Slot[maxStack];
         for (int i =0; i < maxStack; i++) {
             slots[i] = new Slot();
         }
     }
 
     public void pushInt(int value) {
-        this.slots[this.size++].num = value;
+        slots[this.size++].num = value;
     }
 
     public int popInt() {
-        return this.slots[--size].num;
+        return slots[--size].num;
     }
 
     public void pushFloat(float value) {
-        this.slots[size++].num = Float.floatToIntBits(value);
+        slots[size++].num = Float.floatToIntBits(value);
     }
 
     public float popFloat() {
-        return Float.intBitsToFloat(this.slots[--size].num);
+        return Float.intBitsToFloat(slots[--size].num);
     }
 
     public void pushLong(long value) {

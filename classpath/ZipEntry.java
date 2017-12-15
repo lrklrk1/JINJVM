@@ -36,14 +36,10 @@ public class ZipEntry implements Entry {
 //            System.out.println("wrong class name");
             return null;
         }
-        BufferedInputStream bis = null;
-        InputStream is = null;
-        ByteArrayOutputStream baos = null;
         byte[] data = null;
-        try {
-            is = zipFile.getInputStream(zipClassFile);
-            bis = new BufferedInputStream(is);
-            baos = new ByteArrayOutputStream();
+        try (InputStream is = zipFile.getInputStream(zipClassFile);
+             BufferedInputStream bis = new BufferedInputStream(is);
+             ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             byte[] temp = new byte[1024];
             while(bis.read(temp) != -1) {
                 baos.write(temp);
@@ -51,34 +47,12 @@ public class ZipEntry implements Entry {
             data = baos.toByteArray();
         } catch (Exception e) {
             System.out.println("wrong .zip/.jar");
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return data;
     }
 
     @Override
     public String string() {
-        return this.absPath;
+        return absPath;
     }
 }

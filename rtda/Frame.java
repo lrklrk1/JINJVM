@@ -12,11 +12,11 @@ public class Frame {
     }
 
     public LocalVars getLocalVars() {
-        return this.localVars;
+        return localVars;
     }
 
     public OperandStack getOperandStack() {
-        return this.operandStack;
+        return operandStack;
     }
 
 }

@@ -6,7 +6,7 @@ public class ExceptionAttribute implements AttributeInfo {
 
     @Override
     public void readInfo(ClassReader reader) {
-        this.exceptionIndexTable = reader.parseU2s();
+        exceptionIndexTable = reader.parseU2s();
     }
 
     public JVMU2[] getExceptionIndexTable() {

@@ -8,7 +8,7 @@ public class UnparsedAttribute extends MarkerAttribute {
 
     @Override
     public void readInfo(ClassReader reader) {
-        this.info = reader.parseBytes(length);
+        info = reader.parseBytes(length);
     }
 
     public UnparsedAttribute(String name, int length) {
