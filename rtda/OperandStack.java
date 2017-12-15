@@ -59,4 +59,14 @@ public class OperandStack {
         return temp;
     }
 
+    public Slot popSlot() {
+        Slot temp = slots[--size];
+        slots[size] = null;
+        return temp;
+    }
+
+    public void pushSlot(Slot slot) {
+        slots[size++] = slot;
+    }
+
 }
