@@ -14,7 +14,7 @@ public class Lstore {
     public class LSTORE extends Index8Instruction {
         @Override
         public void execute(Frame frame) {
-            lStore(frame, index);
+            lStore(frame, getIndex());
         }
     }
 

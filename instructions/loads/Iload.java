@@ -14,7 +14,7 @@ public class Iload {
     public class ILOAD extends Index8Instruction {
         @Override
         public void execute(Frame frame) {
-            iLoad(frame, index);
+            iLoad(frame, getIndex());
         }
     }
 
