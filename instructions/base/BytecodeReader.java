@@ -41,4 +41,19 @@ public class BytecodeReader {
         pc += 4;
         return temp;
     }
+
+    public int[] parse4s(int n) {
+        int[] ints = new int[n];
+        for (int i = 0; i < n; i++) {
+            ints[i] = parse4();
+        }
+        return ints;
+    }
+
+    public void skipPadding() {
+        while (pc % 2 != 0) {
+            parse1U();
+        }
+    }
+
 }

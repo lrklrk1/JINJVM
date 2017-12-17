@@ -13,7 +13,6 @@ import java.util.*;
 public class Main {
 
     public static void main(String args[]) {
-
 //        Scanner sc = new Scanner(System.in);
 //        String cmd = sc.nextLine();
 //        sc.close();
@@ -24,7 +23,6 @@ public class Main {
         Cmd c = Cmd.parseCmd(cmds);
 
         startJVM(c);
-
     }
 
     private static void startJVM(Cmd cmd) {
@@ -77,5 +75,4 @@ public class Main {
         System.out.println(ops.popInt());
         System.out.println(ops.popInt());
     }
-
 }

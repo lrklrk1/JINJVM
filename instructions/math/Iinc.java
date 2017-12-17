@@ -11,6 +11,14 @@ public class Iinc {
         int index;
         int cons;
 
+        public void setIndex(int index) {
+            this.index = index;
+        }
+
+        public void setCons(int cons) {
+            this.cons = cons;
+        }
+
         @Override
         public void fetchOperands(BytecodeReader reader) {
             this.index = reader.parse1U();
