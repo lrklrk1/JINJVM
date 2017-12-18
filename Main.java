@@ -47,7 +47,7 @@ public class Main {
 
     private static MemberInfo getMainMethod(ClassFile cf) {
         for (MemberInfo m : cf.getMethods()) {
-            if (m.getName() == "main" && m.getDescriptor() == "([Ljava/lang/String;)V") {
+            if (m.getName().equals("main") && m.getDescriptor().equals("([Ljava/lang/String;)V")) {
                 return m;
             }
         }

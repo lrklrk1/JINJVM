@@ -17,7 +17,7 @@ public class Ifnull {
         }
     }
 
-    public class IFNONULL extends BranchInstruction {
+    public class IFNONNULL extends BranchInstruction {
         @Override
         public void execute(Frame frame) {
             object ref = frame.getOperandStack().popRef();

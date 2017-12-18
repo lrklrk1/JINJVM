@@ -1,10 +1,22 @@
 package instructions;
 
 import instructions.base.Instruction;
+import instructions.comparisons.*;
 import instructions.constants.Const;
 import instructions.constants.Ipush;
 import instructions.constants.Nop;
+import instructions.control.Goto;
+import instructions.control.LookUpSwitch;
+import instructions.control.TableSwitch;
+import instructions.conversions.D2x;
+import instructions.conversions.F2x;
+import instructions.conversions.I2x;
+import instructions.conversions.L2x;
+import instructions.extended.GotoW;
+import instructions.extended.Ifnull;
+import instructions.extended.Wide;
 import instructions.loads.*;
+import instructions.math.*;
 import instructions.stack.Dup;
 import instructions.stack.Pop;
 import instructions.stack.Swap;
@@ -206,157 +218,157 @@ public class Factory {
             case 0x5f:
                 return new Swap().new SWAP();
             case 0x60:
-                return new
+                return new Add().new IADD();
             case 0x61:
-                return ladd
+                return new Add().new LADD();
             case 0x62:
-                return fadd
+                return new Add().new FADD();
             case 0x63:
-                return dadd
+                return new Add().new DADD();
             case 0x64:
-                return isub
+                return new Sub().new ISUB();
             case 0x65:
-                return lsub
+                return new Sub().new LSUB();
             case 0x66:
-                return fsub
+                return new Sub().new FSUB();
             case 0x67:
-                return dsub
+                return new Sub().new DSUB();
             case 0x68:
-                return imul
+                return new Mul().new IMUL();
             case 0x69:
-                return lmul
+                return new Mul().new LMUL();
             case 0x6a:
-                return fmul
+                return new Mul().new FMUL();
             case 0x6b:
-                return dmul
+                return new Mul().new DMUL();
             case 0x6c:
-                return idiv
+                return new Div().new IDIV();
             case 0x6d:
-                return ldiv
+                return new Div().new LDIV();
             case 0x6e:
-                return fdiv
+                return new Div().new FDIV();
             case 0x6f:
-                return ddiv
+                return new Div().new DDIV();
             case 0x70:
-                return irem
+                return new Rem().new IREM();
             case 0x71:
-                return lrem
+                return new Rem().new LREM();
             case 0x72:
-                return frem
+                return new Rem().new FREM();
             case 0x73:
-                return drem
+                return new Rem().new DREM();
             case 0x74:
-                return ineg
+                return new Neg().new INEG();
             case 0x75:
-                return lneg
+                return new Neg().new LNEG();
             case 0x76:
-                return fneg
+                return new Neg().new FNEG();
             case 0x77:
-                return dneg
+                return new Neg().new DNEG();
             case 0x78:
-                return ishl
+                return new Sh().new ISHL();
             case 0x79:
-                return lshl
+                return new Sh().new LSHL();
             case 0x7a:
-                return ishr
+                return new Sh().new ISHR();
             case 0x7b:
-                return lshr
+                return new Sh().new LSHR();
             case 0x7c:
-                return iushr
+                return new Sh().new IUSHR();
             case 0x7d:
-                return lushr
+                return new Sh().new LUSHR();
             case 0x7e:
-                return iand
+                return new And().new IAND();
             case 0x7f:
-                return land
+                return new And().new LAND();
             case 0x80:
-                return ior
+                return new Or().new IOR();
             case 0x81:
-                return lor
+                return new Or().new LOR();
             case 0x82:
-                return ixor
+                return new Xor().new IXOR();
             case 0x83:
-                return lxor
+                return new Xor().new LXOR();
             case 0x84:
-                return &IINC{}
+                return new Iinc().new IINC();
             case 0x85:
-                return i2l
+                return new I2x().new I2L();
             case 0x86:
-                return i2f
+                return new I2x().new I2F();
             case 0x87:
-                return i2d
+                return new I2x().new I2D();
             case 0x88:
-                return l2i
+                return new L2x().new L2I();
             case 0x89:
-                return l2f
+                return new L2x().new L2F();
             case 0x8a:
-                return l2d
+                return new L2x().new L2D();
             case 0x8b:
-                return f2i
+                return new F2x().new F2I();
             case 0x8c:
-                return f2l
+                return new F2x().new F2L();
             case 0x8d:
-                return f2d
+                return new F2x().new F2D();
             case 0x8e:
-                return d2i
+                return new D2x().new D2I();
             case 0x8f:
-                return d2l
+                return new D2x().new D2L();
             case 0x90:
-                return d2f
+                return new D2x().new D2F();
             case 0x91:
-                return i2b
+                return new I2x().new I2B();
             case 0x92:
-                return i2c
+                return new I2x().new I2C();
             case 0x93:
-                return i2s
+                return new I2x().new I2S();
             case 0x94:
-                return lcmp
+                return new Lcmp().new LCMP();
             case 0x95:
-                return fcmpl
+                return new Fcmp().new FCMPL();
             case 0x96:
-                return fcmpg
+                return new Fcmp().new FCMPG();
             case 0x97:
-                return dcmpl
+                return new Dcmp().new DCMPL();
             case 0x98:
-                return dcmpg
+                return new Dcmp().new DCMPG();
             case 0x99:
-                return &IFEQ{}
+                return new Ifcond().new IFEQ();
             case 0x9a:
-                return &IFNE{}
+                return new Ifcond().new IFNE();
             case 0x9b:
-                return &IFLT{}
+                return new Ifcond().new IFLT();
             case 0x9c:
-                return &IFGE{}
+                return new Ifcond().new IFGE();
             case 0x9d:
-                return &IFGT{}
+                return new Ifcond().new IFGT();
             case 0x9e:
-                return &IFLE{}
+                return new Ifcond().new IFLE();
             case 0x9f:
-                return &IF_ICMPEQ{}
+                return new IfIcmp().new IFICMPEQ();
             case 0xa0:
-                return &IF_ICMPNE{}
+                return new IfIcmp().new IFICMPNE();
             case 0xa1:
-                return &IF_ICMPLT{}
+                return new IfIcmp().new IFICMPLT();
             case 0xa2:
-                return &IF_ICMPGE{}
+                return new IfIcmp().new IFICMPGE();
             case 0xa3:
-                return &IF_ICMPGT{}
+                return new IfIcmp().new IFICMPGT();
             case 0xa4:
-                return &IF_ICMPLE{}
+                return new IfIcmp().new IFICMPLE();
             case 0xa5:
-                return &IF_ACMPEQ{}
+                return new IfAcmp().new IFACMPEQ();
             case 0xa6:
-                return &IF_ACMPNE{}
+                return new IfAcmp().new IFACMPNE();
             case 0xa7:
-                return &GOTO{}
+                return new Goto().new GOTO();
             // case 0xa8:
             // 	return &JSR{}
             // case 0xa9:
             // 	return &RET{}
             case 0xaa:
-                return &TABLE_SWITCH{}
+                return new TableSwitch().new TABLESWITCH();
             case 0xab:
-                return &LOOKUP_SWITCH{}
+                return new LookUpSwitch().new LOOKUPSWITCH();
             // case 0xac:
             // 	return ireturn
             // case 0xad:
@@ -406,23 +418,22 @@ public class Factory {
             // case 0xc3:
             // 	return monitorexit
             case 0xc4:
-                return &WIDE{}
+                return new Wide().new WIDE();
             // case 0xc5:
             // 	return &MULTI_ANEW_ARRAY{}
             case 0xc6:
-                return &IFNULL{}
+                return new Ifnull().new IFNULL();
             case 0xc7:
-                return &IFNONNULL{}
+                return new Ifnull().new IFNONNULL();
             case 0xc8:
-                return &GOTO_W{}
+                return new GotoW().new GOTOW();
             // case 0xc9:
             // 	return &JSR_W{}
             // case 0xca: breakpoint
             // case 0xfe: impdep1
             // case 0xff: impdep2
             default:
-                panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))
-        }
+                System.out.println("Unsupported opcode: " + opcode);
         }
         System.exit(0);
         return null;
