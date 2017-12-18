@@ -35,5 +35,23 @@ public class CodeAttribute implements AttributeInfo {
         this.cp = cp;
     }
 
+    public int getMaxStack() {
+        return maxStack;
+    }
 
+    public int getMaxLocals() {
+        return maxLocals;
+    }
+
+    public byte[] getCode() {
+        return code;
+    }
+
+    public ExceptionTableEntry[] getExceptionTable() {
+        return exceptionTable;
+    }
+
+    public AttributeInfo[] getAttributes() {
+        return attributes;
+    }
 }

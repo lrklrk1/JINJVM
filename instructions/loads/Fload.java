@@ -39,7 +39,7 @@ public class Fload {
         }
     }
 
-    public class FLOAT_3 extends NoOperandInstruction {
+    public class FLOAD_3 extends NoOperandInstruction {
         @Override
         public void execute(Frame frame) {
             fLoad(frame, 3);

@@ -38,4 +38,11 @@ public class Lstore {
             lStore(frame, 2);
         }
     }
+
+    public class LSTORE_3 extends NoOperandInstruction {
+        @Override
+        public void execute(Frame frame) {
+            lStore(frame, 3);
+        }
+    }
 }

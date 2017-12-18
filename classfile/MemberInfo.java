@@ -16,6 +16,15 @@ public class MemberInfo {
         this.attributes = attributes;
     }
 
+    public CodeAttribute getCodeArrtibute() {
+        for (AttributeInfo attr : attributes) {
+            if (attr instanceof CodeAttribute) {
+                return (CodeAttribute)attr;
+            }
+        }
+        return null;
+    }
+
     public String getName() {
         return constantPool.getUtf(nameIndex);
     }

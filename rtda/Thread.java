@@ -9,23 +9,27 @@ public class Thread {
         stack = new Stack(124);
     }
 
-    int getPC() {
+    public Frame newFrame(int maxLocals, int maxStack) {
+        return new Frame(this, maxLocals, maxStack);
+    }
+
+    public int getPC() {
         return pc;
     }
 
-    void setPC(int pc) {
+    public void setPC(int pc) {
         pc = pc;
     }
 
-    void PushFrame(Frame frame) {
+    public void PushFrame(Frame frame) {
         stack.push(frame);
     }
 
-    Frame PopFrame() {
+    public Frame PopFrame() {
         return stack.pop();
     }
 
-    Frame CurrentFrame() {
+    public Frame CurrentFrame() {
         return stack.top();
     }
 

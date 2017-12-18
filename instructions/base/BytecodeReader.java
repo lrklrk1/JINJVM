@@ -5,6 +5,10 @@ public class BytecodeReader {
     byte[] code;
     int pc;
 
+    public int getPc() {
+        return pc;
+    }
+
     public void reSet(byte[] code, int pc) {
         this.code = code;
         this.pc = pc;

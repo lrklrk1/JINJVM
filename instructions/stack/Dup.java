@@ -15,38 +15,69 @@ public class Dup {
         }
     }
 
-    public class BUP_X1 extends NoOperandInstruction {
-        @Override
-        public void execute(Frame frame) {
-
-        }
-    }
-
-    public class BUP_X2 extends NoOperandInstruction {
-        @Override
-        public void execute(Frame frame) {
-
-        }
-    }
-
-    public class DUP2 extends NoOperandInstruction {
-        @Override
-        public void execute(Frame frame) {
-
-        }
-    }
-
     public class DUP_X1 extends NoOperandInstruction {
         @Override
         public void execute(Frame frame) {
-
+            Slot slot1 = frame.getOperandStack().popSlot();
+            Slot slot2 = frame.getOperandStack().popSlot();
+            frame.getOperandStack().pushSlot(slot1);
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
         }
     }
 
     public class DUP_X2 extends NoOperandInstruction {
         @Override
         public void execute(Frame frame) {
+            Slot slot1 = frame.getOperandStack().popSlot();
+            Slot slot2 = frame.getOperandStack().popSlot();
+            Slot slot3 = frame.getOperandStack().popSlot();
+            frame.getOperandStack().pushSlot(slot1);
+            frame.getOperandStack().pushSlot(slot3);
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
+        }
+    }
 
+    public class DUP2 extends NoOperandInstruction {
+        @Override
+        public void execute(Frame frame) {
+            Slot slot1 = frame.getOperandStack().popSlot();
+            Slot slot2 = frame.getOperandStack().popSlot();
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
+        }
+    }
+
+    public class DUP2_X1 extends NoOperandInstruction {
+        @Override
+        public void execute(Frame frame) {
+            Slot slot1 = frame.getOperandStack().popSlot();
+            Slot slot2 = frame.getOperandStack().popSlot();
+            Slot slot3 = frame.getOperandStack().popSlot();
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
+            frame.getOperandStack().pushSlot(slot3);
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
+        }
+    }
+
+    public class DUP2_X2 extends NoOperandInstruction {
+        @Override
+        public void execute(Frame frame) {
+            Slot slot1 = frame.getOperandStack().popSlot();
+            Slot slot2 = frame.getOperandStack().popSlot();
+            Slot slot3 = frame.getOperandStack().popSlot();
+            Slot slot4 = frame.getOperandStack().popSlot();
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
+            frame.getOperandStack().pushSlot(slot4);
+            frame.getOperandStack().pushSlot(slot3);
+            frame.getOperandStack().pushSlot(slot2);
+            frame.getOperandStack().pushSlot(slot1);
         }
     }
 

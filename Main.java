@@ -17,7 +17,7 @@ public class Main {
 //        String cmd = sc.nextLine();
 //        sc.close();
         String cmd = "java -cp " + "C:" + File.separator + "Users" + File.separator + "lrk" + File.separator +
-                "Desktop" + File.separator + "a" + File.separator + " JsonArray";
+                "Desktop" + File.separator + "a" + File.separator + " GaussTest";
         String[] cmds = cmd.split(" ");
 
         Cmd c = Cmd.parseCmd(cmds);
@@ -27,11 +27,32 @@ public class Main {
 
     private static void startJVM(Cmd cmd) {
         Classpath cp = Classpath.parse(cmd.Jrepath, cmd.Classpath);
-        byte[] data = cp.readClass(cmd.Class);
+        ClassFile cf = loadClass(cmd.Class, cp);
+        MemberInfo mainMethod = getMainMethod(cf);
+        if (mainMethod != null) {
+            Interpreter.interpreter(mainMethod);
+        }
+//        byte[] data = cp.readClass(cmd.Class);
+//        ClassFile cf = ClassFile.parse(data);
+//        Frame frame = new Frame(100, 100);
+//        testLocalVars(frame.getLocalVars());
+//        testOperandStack(frame.getOperandStack());
+    }
+
+    private static ClassFile loadClass(String className, Classpath cp) {
+        byte[] data = cp.readClass(className);
         ClassFile cf = ClassFile.parse(data);
-        Frame frame = new Frame(100, 100);
-        testLocalVars(frame.getLocalVars());
-        testOperandStack(frame.getOperandStack());
+        return cf;
+    }
+
+    private static MemberInfo getMainMethod(ClassFile cf) {
+        for (MemberInfo m : cf.getMethods()) {
+            if (m.getName() == "main" && m.getDescriptor() == "([Ljava/lang/String;)V") {
+                return m;
+            }
+        }
+        System.exit(0);
+        return null;
     }
 
     static void testLocalVars(LocalVars vars) {
