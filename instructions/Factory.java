@@ -26,7 +26,8 @@ public class Factory {
 
     public static Instruction newInstruction(int opcode) {
         switch(opcode) {
-            case 0x00: return new Nop().new NOP();
+            case 0x00:
+                return new Nop().new NOP();
             case 0x01:
                 return new Const().new ACONST_NULL();
             case 0x02:

@@ -21,15 +21,15 @@ public class Thread {
         pc = pc;
     }
 
-    public void PushFrame(Frame frame) {
+    public void pushFrame(Frame frame) {
         stack.push(frame);
     }
 
-    public Frame PopFrame() {
+    public Frame popFrame() {
         return stack.pop();
     }
 
-    public Frame CurrentFrame() {
+    public Frame currentFrame() {
         return stack.top();
     }
 

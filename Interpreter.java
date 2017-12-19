@@ -4,6 +4,8 @@ import instructions.Factory;
 import instructions.base.BytecodeReader;
 import instructions.base.Instruction;
 import rtda.Frame;
+import rtda.LocalVars;
+import rtda.Slot;
 import rtda.Thread;
 
 public class Interpreter {
@@ -16,6 +18,7 @@ public class Interpreter {
 
         Thread thread = new Thread();
         Frame frame = thread.newFrame(maxLocals, maxStack);
+        thread.pushFrame(frame);
 
         try {
             loop(thread, bytecode);
@@ -27,7 +30,7 @@ public class Interpreter {
     }
 
     private static void loop(Thread thread, byte[] bytecode) {
-        Frame frame = thread.PopFrame();
+        Frame frame = thread.popFrame();
         BytecodeReader reader = new BytecodeReader();
         while (true) {
             int pc = frame.getNextPC();
@@ -40,7 +43,16 @@ public class Interpreter {
             inst.fetchOperands(reader);
             frame.setNextPC(reader.getPc());
 
-            System.out.println("pc: " + pc + ", inst: " + inst);
+//            Slot[] s1 = frame.getLocalVars().getLocalVars();
+//            for (Slot s : s1) {
+//                System.out.print(s.getNum() + " ");
+//            }
+//            System.out.println();
+//            s1 = frame.getOperandStack().getSlots();
+//            for (Slot s : s1) {
+//                System.out.print(s.getNum() + " ");
+//            }
+
             inst.execute(frame);
         }
     }

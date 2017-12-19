@@ -28,7 +28,7 @@ public class Iinc {
         @Override
         public void execute(Frame frame) {
             int value = frame.getLocalVars().getInt(index);
-            value += cons;
+            value = value + cons;
             frame.getLocalVars().setInt(index, value);
         }
     }

@@ -55,4 +55,8 @@ public class LocalVars {
         return localVars[index].ref;
     }
 
+    public Slot[] getLocalVars() {
+        return localVars;
+    }
+
 }

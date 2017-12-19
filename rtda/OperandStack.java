@@ -55,7 +55,7 @@ public class OperandStack {
 
     public object popRef() {
         object temp = slots[--size].ref;
-        slots[size].ref = null;
+        slots[size] = null;
         return temp;
     }
 
@@ -67,6 +67,10 @@ public class OperandStack {
 
     public void pushSlot(Slot slot) {
         slots[size++] = slot;
+    }
+
+    public Slot[] getSlots() {
+        return slots;
     }
 
 }

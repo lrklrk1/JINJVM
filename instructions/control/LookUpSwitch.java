@@ -11,7 +11,7 @@ public class LookUpSwitch {
 
         int defaultOffset;
         int nparis;
-        int[] matchOffsets;
+        byte[] matchOffsets;
 
         @Override
         public void fetchOperands(BytecodeReader reader) {

@@ -12,7 +12,7 @@ public class TableSwitch {
         int defaultOffset;
         int low;
         int high;
-        int[] jumpOffsets;
+        byte[] jumpOffsets;
 
         @Override
         public void fetchOperands(BytecodeReader reader) {

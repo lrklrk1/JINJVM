@@ -7,6 +7,7 @@ public abstract class BranchInstruction implements Instruction {
     @Override
     public void fetchOperands(BytecodeReader reader) {
         this.offset = reader.parse2();
+        short s = (short)offset;
     }
 
     public int getOffset() {
