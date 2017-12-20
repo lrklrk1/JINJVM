@@ -1,5 +1,7 @@
 package rtda;
 
+import rtda.heap.object;
+
 public class LocalVars {
 
     Slot[] localVars;

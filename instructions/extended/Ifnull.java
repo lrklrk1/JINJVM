@@ -3,7 +3,7 @@ package instructions.extended;
 import instructions.base.BranchInstruction;
 import instructions.base.BranchLogic;
 import rtda.Frame;
-import rtda.object;
+import rtda.heap.object;
 
 public class Ifnull {
 

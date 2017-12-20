@@ -16,13 +16,14 @@ public class MemberInfo {
         this.attributes = attributes;
     }
 
-    public CodeAttribute getCodeArrtibute() {
-        for (AttributeInfo attr : attributes) {
-            if (attr instanceof CodeAttribute) {
-                return (CodeAttribute)attr;
+    public CodeAttribute[] getArrtibute() {
+        CodeAttribute[] codeAttributes = new CodeAttribute[attributes.length];
+        for (int i = 0; i < attributes.length; i++) {
+            if (attributes[i] instanceof CodeAttribute) {
+                codeAttributes[i] = (CodeAttribute)attributes[i];
             }
         }
-        return null;
+        return codeAttributes;
     }
 
     public String getName() {
@@ -35,6 +36,10 @@ public class MemberInfo {
 
     public String getAttributeCount() {
         return attributes.length + "";
+    }
+
+    public int getAccessFlag() {
+        return accessFlag.getInt();
     }
 
 }

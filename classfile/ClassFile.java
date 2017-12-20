@@ -119,8 +119,8 @@ public class ClassFile {
         return constantPool;
     }
 
-    public String getAccessFlag() {
-        return accessFlag.toString();
+    public int getAccessFlag() {
+        return accessFlag.getInt();
     }
 
     public MemberInfo[] getFields() {

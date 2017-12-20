@@ -2,7 +2,7 @@ package instructions.loads;
 
 import instructions.base.Index8Instruction;
 import instructions.base.NoOperandInstruction;
-import rtda.object;
+import rtda.heap.object;
 import rtda.Frame;
 
 
