@@ -18,7 +18,7 @@ public class Thread {
     }
 
     public void setPC(int pc) {
-        pc = pc;
+        this.pc = pc;
     }
 
     public void pushFrame(Frame frame) {

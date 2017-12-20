@@ -1,15 +1,9 @@
 package instructions.base;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInput;
-import java.io.DataInputStream;
-import java.io.IOException;
-
 public class BytecodeReader {
 
     byte[] code;
     int pc;
-    private DataInput di = null;
 
     public int getPc() {
         return pc;
@@ -18,78 +12,46 @@ public class BytecodeReader {
     public void reSet(byte[] code, int pc) {
         this.code = code;
         this.pc = pc;
-        ByteArrayInputStream bais = new ByteArrayInputStream(code);
-        di = new DataInputStream(bais);
     }
 
     public int parse1U() {
-        pc++;
-        try {
-            return di.readUnsignedByte();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-        return 0;
+        return code[pc++]&0xff;
     }
 
     public byte parse1() {
-        pc++;
-        try {
-            return di.readByte();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-        return 0;
+        return code[pc++];
     }
 
     public int parse2U() {
-        pc += 2;
-        try {
-            return di.readUnsignedShort();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-        return 1;
+        return Byte.compareUnsigned(code[pc++], code[pc++]);
     }
 
     public int parse2() {
-        pc += 2;
-        try {
-            return di.readShort();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-        return 1;
+        byte high = code[pc++];
+        byte low = code[pc++];
+        return (short)(((high & 0x00FF) << 8) | (0x00FF & low));
     }
 
     public int parse4() {
+        int temp = 0;
+        int t0 = code[pc + 3] & 0xff;
+        int t1 = code[pc + 2] & 0xff;
+        int t2 = code[pc + 1] & 0xff;
+        int t3 = code[pc] & 0xff;
+        t3 <<= 24;
+        t2 <<= 16;
+        t1 <<= 8;
+        temp = t0 | t1 | t2 | t3;
         pc += 4;
-        try {
-            return di.readInt();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-        return 0;
+        return temp;
     }
 
-    public byte[] parse4s(int n) {
-        pc += n;
-        byte[] bytes = new byte[n];
-        try {
-            for (int i = 0; i < n; i++) {
-                bytes[i] = di.readByte();
-            }
-            return bytes;
-        } catch (IOException e) {
-            e.printStackTrace();
+    public int[] parse4s(int n) {
+        int[] ints = new int[n];
+        for (int i = 0; i < n; i++) {
+            ints[i] = parse4();
         }
-        System.exit(0);
-        return null;
+        return ints;
     }
 
     public void skipPadding() {
