@@ -1,7 +1,6 @@
 package rtda.heap;
 
 import classfile.ConstantMemberrefInfo;
-import classfile.ConstantMethodrefInfo;
 
 public class CpInterfaceMethodRef extends CpMemberRef implements Constant {
 
