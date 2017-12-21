@@ -19,6 +19,14 @@ public class ConstantPool {
         return cp;
     }
 
+    public int getConstantPoolCount() {
+        return constantPoolCount;
+    }
+
+    public ConstantInfo[] getConstantInfos() {
+        return constantInfos;
+    }
+
     private ConstantInfo readConstantInfo(ClassReader reader, ConstantPool cp) {
         ConstantInfo.TAG tag = ConstantInfo.TAG.get(reader.parseU1().getInt());
         Info info = Info.newConstantInfo(tag, cp);

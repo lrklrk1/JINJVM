@@ -10,16 +10,16 @@ public class ConstantInfoDouble extends ConstantInfo implements Info {
         this.tag = TAG.CONSTANT_Double;
     }
 
+    public double getValue() {
+        return value;
+    }
+
     @Override
     public void readInfo(ClassReader reader) {
         low = reader.parseU4().getU4();
         high = reader.parseU4().getU4();
         value = Double.longBitsToDouble(byteToLong(low, high));
         System.out.println(tag + " " + value);
-    }
-
-    public double getDouble() {
-        return this.value;
     }
 
     private long byteToLong(byte[] low, byte[] high) {

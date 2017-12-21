@@ -10,7 +10,7 @@ public class ConstantInfoLong extends ConstantInfo implements Info {
         this.tag = TAG.CONSTANT_Long;
     }
 
-    public long getLong() {
+    public long getValue() {
         return value;
     }
 

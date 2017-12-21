@@ -7,6 +7,11 @@ public class ConstantInfo {
 //    JVMU1[] info;
     TAG   tag;
 
+    public TAG getTag() {
+        return this.tag;
+    }
+
+
 
     public enum TAG {
         CONSTANT_Class(7),
@@ -41,6 +46,7 @@ public class ConstantInfo {
         public static TAG get(int index) {
             return tags.get(index);
         }
+
 
     }
 

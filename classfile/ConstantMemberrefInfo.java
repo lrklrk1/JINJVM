@@ -18,15 +18,15 @@ public class ConstantMemberrefInfo extends ConstantInfo implements Info{
         System.out.println(tag + " " + classIndex + " " + nameAndTypeIndex);
     }
 
-    String getClassName() {
+    public String getClassName() {
         return cp.getClassName(classIndex);
     }
 
-    String getName() {
+    public String getName() {
         return cp.getName(nameAndTypeIndex);
     }
 
-    String getType() {
+    public String getType() {
         return cp.getType(nameAndTypeIndex);
     }
 }

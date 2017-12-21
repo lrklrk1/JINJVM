@@ -16,7 +16,7 @@ public class ConstantClassInfo extends ConstantInfo implements Info {
         System.out.println(tag + " " + nameIndex);
     }
 
-    String getName() {
+    public String getName() {
         return cp.getUtf(nameIndex);
     }
 }
