@@ -71,4 +71,18 @@ public class ClassMember {
         return 0 != (accessFlag & AccessFlag.ACC_SYNTHETIC.num);
     }
 
+    protected boolean isAccessibleTo(Class d) {
+        if (isPublic()) {
+            return true;
+        }
+        if (isProtected()) {
+            return d == thisclass || d.isSubClassof(thisclass) ||
+                    thisclass.getPackageName() == d.getPackageName();
+        }
+        if (isPrivate()) {
+            return thisclass.getPackageName() == d.getPackageName();
+        }
+        return d == thisclass;
+    }
+
 }

@@ -5,6 +5,14 @@ import classfile.*;
 
 public class ConstantPool {
 
+    public Class getThisclass() {
+        return thisclass;
+    }
+
+    public void setThisclass(Class thisclass) {
+        this.thisclass = thisclass;
+    }
+
     Class thisclass;
     Constant[] constants;
 

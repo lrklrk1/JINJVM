@@ -166,5 +166,25 @@ public class Class {
         return 0 != (accessFlag & AccessFlag.ACC_ENUM.num);
     }
 
+    public boolean isAccessibleTo(Class other) {
+        return isPublic() || getPackageName() == other.getPackageName();
+    }
 
+    public String getPackageName() {
+        int lastLash = thisClassName.lastIndexOf("/");
+        if (lastLash >= 0) {
+            return thisClassName.substring(0, lastLash);
+        }
+        return "";
+    }
+
+    public boolean isSubClassof(Class c) {
+        if (c.getSuperClassName() == thisClassName) {
+            return true;
+        }
+        if (null != superClass && superClassName != "java/lang/Object") {
+            superClass.isSubClassof(c);
+        }
+        return false;
+    }
 }
