@@ -1,5 +1,7 @@
 package classfile;
 
+import rtda.heap.Constant;
+
 public class MemberInfo {
 
     private ConstantPool constantPool;
@@ -40,6 +42,16 @@ public class MemberInfo {
 
     public int getAccessFlag() {
         return accessFlag.getInt();
+    }
+
+    public ConstantValueAttribute getConstantValueAttribute() {
+        ConstantValueAttribute cva = null;
+        for (AttributeInfo attr : attributes) {
+            if (attr instanceof ConstantValueAttribute) {
+                cva = (ConstantValueAttribute) attr;
+            }
+        }
+        return cva;
     }
 
 }

@@ -63,9 +63,5 @@ public class Classpath {
         }
         return userClasspath.readClass(className);
     }
-//
-//    public String string() {
-//        return this.userClasspath.string();
-//    }
 
 }

@@ -10,7 +10,7 @@ public class Method {
     int maxLocals;
     byte[] code;
 
-    public Method[] newMethods(Class thisClass, MemberInfo[] cfMethods) {
+    public static Method[] newMethods(Class thisClass, MemberInfo[] cfMethods) {
         Method[] methods = new Method[cfMethods.length];
         for (int i = 0; i < cfMethods.length; i++) {
             methods[i] = new Method();

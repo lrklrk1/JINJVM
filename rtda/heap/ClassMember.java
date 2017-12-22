@@ -47,4 +47,28 @@ public class ClassMember {
         this.descriptor = memberInfo.getDescriptor();
     }
 
+    public boolean isPublic() {
+        return 0 != (accessFlag & AccessFlag.ACC_PUBLIC.num);
+    }
+
+    public boolean isPrivate() {
+        return 0 != (accessFlag & AccessFlag.ACC_PRIVATE.num);
+    }
+
+    public boolean isProtected() {
+        return 0 != (accessFlag & AccessFlag.ACC_PROTECTED.num);
+    }
+
+    public boolean isStatic() {
+        return 0 != (accessFlag & AccessFlag.ACC_STATIC.num);
+    }
+
+    public boolean isFinal() {
+        return 0 != (accessFlag & AccessFlag.ACC_FINAL.num);
+    }
+
+    public boolean isSynthetic() {
+        return 0 != (accessFlag & AccessFlag.ACC_SYNTHETIC.num);
+    }
+
 }

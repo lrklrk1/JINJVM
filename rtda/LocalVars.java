@@ -6,7 +6,7 @@ public class LocalVars {
 
     Slot[] localVars;
 
-    LocalVars(int maxLocals) {
+    public LocalVars(int maxLocals) {
         assert (maxLocals > 0);
         this.localVars = new Slot[maxLocals];
         for (int i =0; i < maxLocals; i++) {

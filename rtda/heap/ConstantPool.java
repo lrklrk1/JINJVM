@@ -21,7 +21,7 @@ public class ConstantPool {
         constants = new Constant[cpCount];
     }
 
-    public ConstantPool newConstantPool(Class thisclass, classfile.ConstantPool cfcp) {
+    public static ConstantPool newConstantPool(Class thisclass, classfile.ConstantPool cfcp) {
         int cpCount = cfcp.getConstantPoolCount();
         ConstantPool cp = new ConstantPool(thisclass, cpCount);
         ConstantInfo[] ci = cfcp.getConstantInfos();
@@ -31,26 +31,34 @@ public class ConstantPool {
             switch (tag) {
                 case CONSTANT_Integer:
                     ConstantInfoInteger cii = (ConstantInfoInteger)cpinfo;
-                    constants[i] = new CpInteger(cii.getValue());
+                    cp.constants[i] = new CpInteger(cii.getValue());
                     break;
                 case CONSTANT_Long:
                     ConstantInfoLong cil = (ConstantInfoLong)cpinfo;
-                    constants[i] = new CpLong(cil.getValue());
+                    cp.constants[i] = new CpLong(cil.getValue());
                     i++;
                     break;
                 case CONSTANT_Float:
                     ConstantInfoFloat cif = (ConstantInfoFloat)cpinfo;
-                    constants[i] = new CpFloat(cif.getValue());
+                    cp.constants[i] = new CpFloat(cif.getValue());
                     break;
                 case CONSTANT_Double:
                     ConstantInfoDouble cid = (ConstantInfoDouble)cpinfo;
-                    constants[i] = new CpDouble(cid.getValue());
+                    cp.constants[i] = new CpDouble(cid.getValue());
                     i++;
                     break;
                 case CONSTANT_Class:
                     ConstantClassInfo cci = (ConstantClassInfo)cpinfo;
-                    constants[i] = new CpClassRef(this, cci);
-
+                    cp.constants[i] = new CpClassRef(cp, cci);
+                case CONSTANT_Fieldref:
+                    ConstantFieldrefInfo cfi = (ConstantFieldrefInfo)cpinfo;
+                    cp.constants[i] = new CpFieldRef(cp, cfi);
+                case CONSTANT_Methodref:
+                    ConstantMethodrefInfo cmi = (ConstantMethodrefInfo)cpinfo;
+                    cp.constants[i] = new CpMethodRef(cp, cmi);
+                case CONSTANT_InterfaceMethodref:
+                    ConstantInterfaceMethodrefInfo cimi = (ConstantInterfaceMethodrefInfo)cpinfo;
+                    cp.constants[i] = new CpInterfaceMethodRef(cp, cimi);
             }
         }
 
