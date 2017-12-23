@@ -179,11 +179,30 @@ public class Class {
     }
 
     public boolean isSubClassof(Class c) {
-        if (c.getSuperClassName() == thisClassName) {
-            return true;
+        for (Class cc = this.getSuperClass(); cc != null; cc = cc.getSuperClass()) {
+            if (cc == c) {
+                return true;
+            }
         }
-        if (null != superClass && superClassName != "java/lang/Object") {
-            superClass.isSubClassof(c);
+        return false;
+    }
+
+    public boolean isImplements(Class iface) {
+        for (Class c = this.getSuperClass(); c != null; c = c.getSuperClass()) {
+            for (Class i : c.getInterfaces()) {
+                if (i == iface || i.isSubInterfaceOf(iface)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isSubInterfaceOf(Class iface) {
+        for (Class suprtInterface : this.getInterfaces()) {
+            if (suprtInterface == iface || suprtInterface.isSubClassof(iface)) {
+                return true;
+            }
         }
         return false;
     }
@@ -191,6 +210,19 @@ public class Class {
     public object newObject() {
         return new object(this);
     }
+
+    public boolean isAssignableFrom(Class other) {
+        if (other == this) {
+            return true;
+        }
+        if (!this.isInterface()) {
+            return other.isSubClassof(this);
+        } else {
+            return other.isImplements(this);
+        }
+    }
+
+
 
 
 }

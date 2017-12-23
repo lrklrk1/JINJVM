@@ -41,15 +41,20 @@ public class PutStatic {
                 case 'S':
                 case 'I':
                     slots.setInt(slotId, stack.popInt());
+                    break;
                 case 'F':
                     slots.setFloat(slotId, stack.popFloat());
+                    break;
                 case 'J':
                     slots.setLong(slotId, stack.popLong());
+                    break;
                 case 'D':
                     slots.setDouble(slotId, stack.popDouble());
+                    break;
                 case 'L':
                 case '[':
                     slots.setRef(slotId, stack.popRef());
+                    break;
             }
         }
 
@@ -79,15 +84,20 @@ public class PutStatic {
                 case 'S':
                 case 'I':
                     stack.pushInt(slots.getInt(slotId));
+                    break;
                 case 'F':
                     stack.pushFloat(slots.getFloat(slotId));
+                    break;
                 case 'J':
                     stack.pushLong(slots.getLong(slotId));
+                    break;
                 case 'D':
                     stack.pushDouble(slots.getDouble(slotId));
+                    break;
                 case 'L':
                 case '[':
                     stack.pushRef(slots.getRef(slotId));
+                    break;
             }
         }
     }
