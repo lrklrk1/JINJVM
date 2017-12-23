@@ -187,4 +187,10 @@ public class Class {
         }
         return false;
     }
+
+    public object newObject() {
+        return new object(this);
+    }
+
+
 }

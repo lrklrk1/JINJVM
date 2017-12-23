@@ -1,11 +1,15 @@
 package rtda;
 
+import rtda.heap.Method;
+
 public class Frame {
 
+    int nextPC;
     Frame lower;
     LocalVars localVars;
     OperandStack operandStack;
     Thread thread;
+    Method method;
 
     public Thread getThread() {
         return thread;
@@ -15,13 +19,16 @@ public class Frame {
         return nextPC;
     }
 
-    int nextPC;
+    public Method getMethod() {
+        return method;
+    }
 
 
-    public Frame(Thread thread, int maxLocals, int maxStack) {
+    public Frame(Thread thread, Method method) {
         this.thread = thread;
-        this.localVars = new LocalVars(maxLocals);
-        this.operandStack = new OperandStack(maxStack);
+        this.method = method;
+        this.localVars = new LocalVars(method.getMaxLocals());
+        this.operandStack = new OperandStack(method.getMaxStack());
     }
 
     public LocalVars getLocalVars() {

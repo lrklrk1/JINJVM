@@ -1,5 +1,7 @@
 package rtda;
 
+import rtda.heap.Method;
+
 public class Thread {
 
     int pc;
@@ -9,8 +11,8 @@ public class Thread {
         stack = new Stack(124);
     }
 
-    public Frame newFrame(int maxLocals, int maxStack) {
-        return new Frame(this, maxLocals, maxStack);
+    public Frame newFrame(Method method) {
+        return new Frame(this, method);
     }
 
     public int getPC() {

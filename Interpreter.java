@@ -7,17 +7,15 @@ import rtda.Frame;
 import rtda.LocalVars;
 import rtda.Slot;
 import rtda.Thread;
+import rtda.heap.Method;
 
 public class Interpreter {
 
-    public static void interpreter(MemberInfo methodInfo) {
-        CodeAttribute codeAttr = methodInfo.getCodeArrtibute();
-        int maxLocals = codeAttr.getMaxLocals();
-        int maxStack = codeAttr.getMaxStack();
-        byte[] bytecode = codeAttr.getCode();
+    public static void interpreter(Method method) {
+        byte[] bytecode = method.getCode();
 
         Thread thread = new Thread();
-        Frame frame = thread.newFrame(maxLocals, maxStack);
+        Frame frame = thread.newFrame(method);
         thread.pushFrame(frame);
 
         try {
