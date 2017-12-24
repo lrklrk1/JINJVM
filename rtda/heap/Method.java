@@ -9,26 +9,14 @@ public class Method {
     int maxStack;
     int maxLocals;
     byte[] code;
+    int argsSlotCount;
 
-    public static Method[] newMethods(Class thisClass, MemberInfo[] cfMethods) {
-        Method[] methods = new Method[cfMethods.length];
-        for (int i = 0; i < cfMethods.length; i++) {
-            methods[i] = new Method();
-            methods[i].setClassMember(new ClassMember());
-            methods[i].getClassMember().setThisclass(thisClass);
-            methods[i].getClassMember().copyMember(cfMethods[i]);
-            methods[i].copyAttribute(cfMethods[i]);
-        }
-        return methods;
+    public int getArgsSlotCount() {
+        return argsSlotCount;
     }
 
-    public void copyAttribute(MemberInfo method) {
-        if (method != null && method.getArrtibute().length != 0 && null != method.getArrtibute()[0]) {
-            CodeAttribute codeAttribute = method.getArrtibute()[0];
-            maxStack = codeAttribute.getMaxStack();
-            maxLocals = codeAttribute.getMaxLocals();
-            code = codeAttribute.getCode();
-        }
+    public void setArgsSlotCount(int argsSlotCount) {
+        this.argsSlotCount = argsSlotCount;
     }
 
     public ClassMember getClassMember() {
@@ -62,4 +50,31 @@ public class Method {
     public void setCode(byte[] code) {
         this.code = code;
     }
+
+    public static Method[] newMethods(Class thisClass, MemberInfo[] cfMethods) {
+        Method[] methods = new Method[cfMethods.length];
+        for (int i = 0; i < cfMethods.length; i++) {
+            methods[i] = new Method();
+            methods[i].setClassMember(new ClassMember());
+            methods[i].getClassMember().setThisclass(thisClass);
+            methods[i].getClassMember().copyMember(cfMethods[i]);
+            methods[i].copyAttribute(cfMethods[i]);
+            methods[i].calcArgSlotCount();
+        }
+        return methods;
+    }
+
+    public void copyAttribute(MemberInfo method) {
+        if (method != null && method.getArrtibute().length != 0 && null != method.getArrtibute()[0]) {
+            CodeAttribute codeAttribute = method.getArrtibute()[0];
+            maxStack = codeAttribute.getMaxStack();
+            maxLocals = codeAttribute.getMaxLocals();
+            code = codeAttribute.getCode();
+        }
+    }
+
+    private void calcArgSlotCount() {
+
+    }
+
 }

@@ -41,7 +41,7 @@ public class InvokeVirtual {
                     case "(D)V":
                         System.out.println(stack.popDouble());
                     default:
-                        System.out.println("println: " + methodRef.getMethod().getClassMember().getDescriptor());
+                        System.out.println("println: " + methodRef.resolveMethod().getClassMember().getDescriptor());
                 }
                 stack.popRef();
             }

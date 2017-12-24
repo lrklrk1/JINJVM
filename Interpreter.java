@@ -42,12 +42,6 @@ public class Interpreter {
             frame.setNextPC(reader.getPc());
 
             System.out.println("pc :" + pc + " opcode: " + opcode);
-//            Slot[] slots = frame.getOperandStack().getSlots();
-//            for (Slot s : slots) {
-//                if (s != null) {
-//                    System.out.println(s.getNum() + " " + s.getRef());
-//                }
-//            }
             inst.execute(frame);
 
 
