@@ -63,11 +63,17 @@ public class ConstantPool {
     }
 
     String getClassName(JVMU2 index) {
+        if (index.getInt() == 0) {
+            return "";
+        }
         ConstantClassInfo cci = (ConstantClassInfo) getConstantInfo(index);
         return cci.getName();
     }
 
     String getUtf(JVMU2 index) {
+        if (index.getInt() == 0) {
+            return "";
+        }
         ConstantUtf8Info cui = (ConstantUtf8Info)getConstantInfo(index);
         return cui.getString();
     }

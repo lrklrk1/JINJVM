@@ -11,4 +11,16 @@ public class Slot {
         return num;
     }
 
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public object getRef() {
+
+        return ref;
+    }
+
+    public void setRef(object ref) {
+        this.ref = ref;
+    }
 }

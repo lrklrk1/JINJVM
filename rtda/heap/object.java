@@ -1,6 +1,7 @@
 package rtda.heap;
 
 import rtda.LocalVars;
+import rtda.Slot;
 
 public class object {
 
@@ -10,6 +11,9 @@ public class object {
     public object(Class thisClass) {
         this.thisClas = thisClass;
         this.fields = new LocalVars(thisClass.getInstancesSlotCount());
+        for (Slot slot : fields.getLocalVars()) {
+            slot = new Slot();
+        }
     }
 
     public Class getThisClas() {

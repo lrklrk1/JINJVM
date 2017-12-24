@@ -23,7 +23,7 @@ public class Method {
     }
 
     public void copyAttribute(MemberInfo method) {
-        if (method != null && method.getArrtibute() != null) {
+        if (method != null && method.getArrtibute().length != 0 && null != method.getArrtibute()[0]) {
             CodeAttribute codeAttribute = method.getArrtibute()[0];
             maxStack = codeAttribute.getMaxStack();
             maxLocals = codeAttribute.getMaxLocals();

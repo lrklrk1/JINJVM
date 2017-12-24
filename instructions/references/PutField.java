@@ -34,7 +34,7 @@ public class PutField {
             int slotId = field.getSlotId();
             OperandStack stack = frame.getOperandStack();
 
-            switch (descriptor.indexOf(0)) {
+            switch (descriptor.charAt(0)) {
                 case 'Z':
                 case 'B':
                 case 'C':
@@ -113,7 +113,7 @@ public class PutField {
             int slotId = field.getSlotId();
             LocalVars slots = ref.getFields();
 
-            switch (descriptor.indexOf(0)) {
+            switch (descriptor.charAt(0)) {
                 case 'Z':
                 case 'B':
                 case 'C':

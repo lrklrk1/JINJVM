@@ -222,7 +222,19 @@ public class Class {
         }
     }
 
+    public Method getMainMethod() {
+        return getStaticMethod("main", "([Ljava/lang/String;)V");
+    }
 
-
+    public Method getStaticMethod(String name, String descpritor) {
+        for (Method method : getMethods()) {
+            if (method.getClassMember().isStatic() &&
+                    method.getClassMember().getName().equals(name) &&
+                    method.getClassMember().getDescriptor().equals(descpritor)) {
+                return method;
+            }
+        }
+        return null;
+    }
 
 }

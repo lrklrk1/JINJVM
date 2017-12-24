@@ -21,7 +21,7 @@ public class WildcardEntrty implements Entry {
         }
         int index = 0;
         for(File f : subFiles) {
-            if(f.isDirectory()) {
+            if(f.isDirectory() || f.getName().endsWith(".jar") || f.getName().endsWith(".JAR")) {
                 if(f.getName().endsWith(".jar") || f.getName().endsWith(".JAR")) {
                     entries[index++] = new ZipEntry(f.getAbsolutePath());
                 } else {
@@ -36,7 +36,7 @@ public class WildcardEntrty implements Entry {
     public byte[] readClass(String className) {
         byte[] data = null;
         for (Entry entry : entries) {
-            if (entry != null) {
+            if (null != entry && null == data) {
                 data = entry.readClass(className);
             }
         }

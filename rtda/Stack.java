@@ -24,6 +24,7 @@ public class Stack {
     Frame pop() {
         if (top == null) {
             System.out.println("jvm stack is empty");
+            return null;
         }
         Frame temp = top;
         top = top.lower;
@@ -35,6 +36,7 @@ public class Stack {
     Frame top() {
         if (top == null) {
             System.out.println("jvm stack is empty");
+            return null;
         }
         return top;
     }

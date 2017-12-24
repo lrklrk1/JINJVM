@@ -4,7 +4,7 @@ import rtda.heap.object;
 
 public class OperandStack {
 
-    int size;
+    private int size;
     Slot[] slots;
 
     OperandStack(int maxStack) {
@@ -16,6 +16,9 @@ public class OperandStack {
     }
 
     public void pushInt(int value) {
+        if (null == slots[this.size]) {
+            slots[this.size] = new Slot();
+        }
         slots[this.size++].num = value;
     }
 
@@ -24,6 +27,9 @@ public class OperandStack {
     }
 
     public void pushFloat(float value) {
+        if (null == slots[size]) {
+            slots[size] = new Slot();
+        }
         slots[size++].num = Float.floatToIntBits(value);
     }
 
@@ -32,6 +38,12 @@ public class OperandStack {
     }
 
     public void pushLong(long value) {
+        if (null == slots[size]) {
+            slots[size] = new Slot();
+        }
+        if (null == slots[size + 1]) {
+            slots[size + 1] = new Slot();
+        }
         this.slots[size++].num = (int) (0xFFFFFFFFl & value);
         this.slots[size++].num = (int) ((0xFFFFFFFF00000000l & value) >> 32);
     }
@@ -52,6 +64,9 @@ public class OperandStack {
     }
 
     public void pushRef(object ref) {
+        if (null == slots[size]) {
+            slots[size] = new Slot();
+        }
         slots[size++].ref = ref;
     }
 
@@ -68,6 +83,9 @@ public class OperandStack {
     }
 
     public void pushSlot(Slot slot) {
+        if (null == slots[size]) {
+            slots[size] = new Slot();
+        }
         slots[size++] = slot;
     }
 

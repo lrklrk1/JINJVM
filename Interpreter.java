@@ -41,17 +41,16 @@ public class Interpreter {
             inst.fetchOperands(reader);
             frame.setNextPC(reader.getPc());
 
-//            Slot[] s1 = frame.getLocalVars().getLocalVars();
-//            for (Slot s : s1) {
-//                System.out.print(s.getNum() + " ");
+            System.out.println("pc :" + pc + " opcode: " + opcode);
+//            Slot[] slots = frame.getOperandStack().getSlots();
+//            for (Slot s : slots) {
+//                if (s != null) {
+//                    System.out.println(s.getNum() + " " + s.getRef());
+//                }
 //            }
-//            System.out.println();
-//            s1 = frame.getOperandStack().getSlots();
-//            for (Slot s : s1) {
-//                System.out.print(s.getNum() + " ");
-//            }
-
             inst.execute(frame);
+
+
         }
     }
 

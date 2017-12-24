@@ -1,12 +1,13 @@
 package classpath;
 
 import java.io.*;
+import java.util.jar.JarFile;
 import java.util.zip.ZipFile;
 
 public class ZipEntry implements Entry {
 
     private String absPath;
-    private ZipFile zipFile;
+    private JarFile zipFile;
 
     ZipEntry(String path) {
         try {
@@ -15,7 +16,7 @@ public class ZipEntry implements Entry {
                 System.out.println(".jar/.zip don not exist!");
             }
             try {
-                zipFile = new ZipFile(absPath);
+                zipFile = new JarFile(path);
             } catch (Exception e) {
                 e.printStackTrace();
             }

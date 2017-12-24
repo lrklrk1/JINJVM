@@ -17,7 +17,7 @@ public class ConstantPool {
     Constant[] constants;
 
     public Constant getConstant(int index) {
-        if (index < constants.length && constants[index] != null) {
+        if (index > constants.length && constants[index] != null) {
             System.out.println("No constants at " + index);
             System.exit(0);
         }
@@ -33,7 +33,7 @@ public class ConstantPool {
         int cpCount = cfcp.getConstantPoolCount();
         ConstantPool cp = new ConstantPool(thisclass, cpCount);
         ConstantInfo[] ci = cfcp.getConstantInfos();
-        for (int i = 0; i < cpCount; i++) {
+        for (int i = 1; i < cpCount; i++) {
             ConstantInfo cpinfo = ci[i];
             ConstantInfo.TAG tag = cpinfo.getTag();
             switch (tag) {
@@ -58,15 +58,19 @@ public class ConstantPool {
                 case CONSTANT_Class:
                     ConstantClassInfo cci = (ConstantClassInfo)cpinfo;
                     cp.constants[i] = new CpClassRef(cp, cci);
+                    break;
                 case CONSTANT_Fieldref:
                     ConstantFieldrefInfo cfi = (ConstantFieldrefInfo)cpinfo;
                     cp.constants[i] = new CpFieldRef(cp, cfi);
+                    break;
                 case CONSTANT_Methodref:
                     ConstantMethodrefInfo cmi = (ConstantMethodrefInfo)cpinfo;
                     cp.constants[i] = new CpMethodRef(cp, cmi);
+                    break;
                 case CONSTANT_InterfaceMethodref:
                     ConstantInterfaceMethodrefInfo cimi = (ConstantInterfaceMethodrefInfo)cpinfo;
                     cp.constants[i] = new CpInterfaceMethodRef(cp, cimi);
+                    break;
             }
         }
 

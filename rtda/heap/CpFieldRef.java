@@ -11,7 +11,7 @@ public class CpFieldRef extends CpMemberRef {
     }
 
     public Field resolvedField() {
-        if (null != field) {
+        if (null == field) {
             resolvedFieldRef();
         }
         return field;
@@ -35,8 +35,8 @@ public class CpFieldRef extends CpMemberRef {
 
     private Field lookUpField(Class c, String name, String descriptor) {
         for (Field field : c.getFields()) {
-            if (name == field.getClassMember().getName()
-                    && descriptor == field.getClassMember().getDescriptor()) {
+            if (name.equals(field.getClassMember().getName())
+                    && descriptor.equals(field.getClassMember().getDescriptor())) {
                 return field;
             }
         }

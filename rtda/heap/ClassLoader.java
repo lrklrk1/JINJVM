@@ -33,7 +33,7 @@ public class ClassLoader {
 
     private byte[] readClass(String name) {
         byte[] data = classpath.readClass(name);
-        if (null != data) {
+        if (null == data) {
             System.out.println("java.lang.ClassNotFoundException: " + name);
         }
         return data;

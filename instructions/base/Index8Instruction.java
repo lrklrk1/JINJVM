@@ -6,7 +6,7 @@ public abstract class Index8Instruction implements Instruction {
 
     @Override
     public void fetchOperands(BytecodeReader reader) {
-        this.index = reader.parse2();
+        this.index = reader.parse1();
     }
 
     public int getIndex() {

@@ -34,7 +34,7 @@ public class PutStatic {
             LocalVars slots = thisClass.getStaticVars();
             OperandStack stack = frame.getOperandStack();
 
-            switch (descriptor.indexOf(0)) {
+            switch (descriptor.charAt(0)) {
                 case 'Z':
                 case 'B':
                 case 'C':
@@ -77,7 +77,7 @@ public class PutStatic {
             LocalVars slots = thisClass.getStaticVars();
             OperandStack stack = frame.getOperandStack();
 
-            switch (descriptor.indexOf(0)) {
+            switch (descriptor.charAt(0)) {
                 case 'Z':
                 case 'B':
                 case 'C':

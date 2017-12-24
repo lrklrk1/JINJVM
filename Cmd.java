@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -59,9 +60,10 @@ class Cmd {
             System.out.println("miss argument");
             System.exit(1);
         }
-
-
-        System.out.print("java " + "-jre " + cmd.Jrepath + " -classpath " + cmd.Classpath + " class " + cmd.Class + " args ");
+//F:\Java jre
+        String jre = "F:" + File.separator + "java jre";
+        cmd.Jrepath = jre;
+        System.out.println("java " + "-jre " + cmd.Jrepath + " -classpath " + cmd.Classpath + " class " + cmd.Class + " args ");
         for(String s : cmd.Args) {
             System.out.print(s + " ");
         }
