@@ -1,17 +1,24 @@
 package instructions.base;
 
 import rtda.Frame;
+import rtda.Slot;
 import rtda.Thread;
 import rtda.heap.Method;
 
 public class MethodInvokeLogic {
 
-    public void invokeMethod(Frame invokeFrame, Method method) {
+    public static void invokeMethod(Frame invokeFrame, Method method) {
         Thread thread = invokeFrame.getThread();
-        Frame frame = thread.newFrame(method);
-        thread.pushFrame(frame);
+        Frame newFrame = thread.newFrame(method);
+        thread.pushFrame(newFrame);
 
-//        int argsSlotSlot = method.getArgSlotCount();
+        int argsSlotCount = method.getArgsSlotCount();
+        if (argsSlotCount > 0) {
+            for (int i = argsSlotCount - 1; i >= 0; i--) {
+                Slot slot = invokeFrame.getOperandStack().popSlot();
+                newFrame.getLocalVars().setSlot(i, slot);
+            }
+        }
     }
 
 }

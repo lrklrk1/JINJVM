@@ -3,20 +3,40 @@ package rtda.heap;
 import classfile.CodeAttribute;
 import classfile.MemberInfo;
 
+import static rtda.heap.AccessFlag.ACC_ABSTRACT;
+import static rtda.heap.MethodDescriptorParser.parseMethodDescriptor;
+
 public class Method {
 
     ClassMember classMember;
     int maxStack;
     int maxLocals;
     byte[] code;
-    int argsSlotCount;
+    int argSlotCount;
+    MethodDescriptor parsedDescriptor;
+
+    public int getArgSlotCount() {
+        return argSlotCount;
+    }
+
+    public void setArgSlotCount(int argSlotCount) {
+        this.argSlotCount = argSlotCount;
+    }
+
+    public MethodDescriptor getParsedDescriptor() {
+        return parsedDescriptor;
+    }
+
+    public void setParsedDescriptor(MethodDescriptor parsedDescriptor) {
+        this.parsedDescriptor = parsedDescriptor;
+    }
 
     public int getArgsSlotCount() {
-        return argsSlotCount;
+        return argSlotCount;
     }
 
     public void setArgsSlotCount(int argsSlotCount) {
-        this.argsSlotCount = argsSlotCount;
+        this.argSlotCount = argsSlotCount;
     }
 
     public ClassMember getClassMember() {
@@ -59,7 +79,9 @@ public class Method {
             methods[i].getClassMember().setThisclass(thisClass);
             methods[i].getClassMember().copyMember(cfMethods[i]);
             methods[i].copyAttribute(cfMethods[i]);
-            methods[i].calcArgSlotCount();
+            MethodDescriptor md = parseMethodDescriptor(methods[i].getClassMember().getDescriptor());
+            methods[i].parsedDescriptor = md;
+            methods[i].calcArgSlotCount(md.getParameterTypes());
         }
         return methods;
     }
@@ -73,8 +95,20 @@ public class Method {
         }
     }
 
-    private void calcArgSlotCount() {
+    private void calcArgSlotCount(String[] paramTypes) {
+        for (String paramType : paramTypes) {
+            this.argSlotCount++;
+            if (paramType.equals("J") || paramType.equals("D")) {
+                this.argSlotCount++;
+            }
+        }
+        if (!this.getClassMember().isStatic()) {
+            this.argSlotCount++;
+        }
+    }
 
+    public boolean isAbstract() {
+        return 0 != (getClassMember().getAccessFlag() & ACC_ABSTRACT.num);
     }
 
 }

@@ -35,4 +35,8 @@ public class Thread {
         return stack.top();
     }
 
+    public Frame topFrame() {
+        return stack.top;
+    }
+
 }

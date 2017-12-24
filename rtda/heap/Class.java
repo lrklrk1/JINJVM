@@ -178,7 +178,7 @@ public class Class {
         return "";
     }
 
-    public boolean isSubClassof(Class c) {
+    public boolean isSubClassOf(Class c) {
         for (Class cc = this.getSuperClass(); cc != null; cc = cc.getSuperClass()) {
             if (cc == c) {
                 return true;
@@ -200,7 +200,7 @@ public class Class {
 
     public boolean isSubInterfaceOf(Class iface) {
         for (Class suprtInterface : this.getInterfaces()) {
-            if (suprtInterface == iface || suprtInterface.isSubClassof(iface)) {
+            if (suprtInterface == iface || suprtInterface.isSubClassOf(iface)) {
                 return true;
             }
         }
@@ -216,7 +216,7 @@ public class Class {
             return true;
         }
         if (!this.isInterface()) {
-            return other.isSubClassof(this);
+            return other.isSubClassOf(this);
         } else {
             return other.isImplements(this);
         }
@@ -235,6 +235,10 @@ public class Class {
             }
         }
         return null;
+    }
+
+    public boolean isSuperClassOf(Class pClass) {
+        return pClass.isSubClassOf(this);
     }
 
 }
