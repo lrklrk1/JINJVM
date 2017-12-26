@@ -9,6 +9,7 @@ public class MethodDescriptor {
 
     public void addParameterType(String t) {
         if (parameterTypes == null) {
+
             return;
         }
         int plen = this.parameterTypes.length;

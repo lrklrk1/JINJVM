@@ -8,7 +8,7 @@ public class Thread {
     Stack stack;
 
     public Thread() {
-        stack = new Stack(124);
+        stack = new Stack(1024);
     }
 
     public Frame newFrame(Method method) {

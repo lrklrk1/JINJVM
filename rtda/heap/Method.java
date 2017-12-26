@@ -81,7 +81,7 @@ public class Method {
             methods[i].copyAttribute(cfMethods[i]);
             MethodDescriptor md = parseMethodDescriptor(methods[i].getClassMember().getDescriptor());
             methods[i].parsedDescriptor = md;
-            methods[i].calcArgSlotCount(md.getParameterTypes());
+            methods[i].calcArgSlotCount();
         }
         return methods;
     }
@@ -95,7 +95,9 @@ public class Method {
         }
     }
 
-    private void calcArgSlotCount(String[] paramTypes) {
+    private void calcArgSlotCount() {
+        MethodDescriptor parsedDescriptor = parseMethodDescriptor(getClassMember().getDescriptor());
+        String[] paramTypes = parsedDescriptor.parameterTypes;
         if (null == paramTypes) {
             argSlotCount = 1;
             return;
