@@ -11,6 +11,8 @@ class Cmd {
     String Class;
     String[] Args;
     String Jrepath;
+    boolean verboseClassFlag;
+    boolean verboseInstFlag;
 
     static Cmd parseCmd(String[] cmds) {
         List<String> als = new ArrayList<>();
@@ -63,10 +65,16 @@ class Cmd {
 //F:\Java jre
         String jre = "F:" + File.separator + "java jre";
         cmd.Jrepath = jre;
-        System.out.println("java " + "-jre " + cmd.Jrepath + " -classpath " + cmd.Classpath + " class " + cmd.Class + " args ");
-        for(String s : cmd.Args) {
-            System.out.print(s + " ");
-        }
+        cmd.verboseClassFlag = true;
+        cmd.verboseInstFlag = true;
+        System.out.println("java "
+                + "-jre " + cmd.Jrepath
+                + " -classpath " + cmd.Classpath
+                + " class " + cmd.Class
+                + " args ");
+//        for(String s : cmd.Args) {
+//            System.out.print(s + " ");
+//        }
         return cmd;
     }
 

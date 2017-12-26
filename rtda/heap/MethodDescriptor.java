@@ -8,6 +8,9 @@ public class MethodDescriptor {
     String returnType;
 
     public void addParameterType(String t) {
+        if (parameterTypes == null) {
+            return;
+        }
         int plen = this.parameterTypes.length;
         String[] temp = new String[plen + 1];
         temp = Arrays.copyOfRange(temp, 0, plen);

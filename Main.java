@@ -20,7 +20,7 @@ public class Main {
 //        String cmd = sc.nextLine();
 //        sc.close();
         String cmd = "java -cp " + "C:" + File.separator + "Users" + File.separator + "lrk" + File.separator +
-                "Desktop" + File.separator + "a" + File.separator + " MyObject";
+                "Desktop" + File.separator + "a" + File.separator + " invokeDemo";
         String[] cmds = cmd.split(" ");
 
         Cmd c = Cmd.parseCmd(cmds);
@@ -30,13 +30,13 @@ public class Main {
 
     private static void startJVM(Cmd cmd) {
         Classpath cp = Classpath.parse(cmd.Jrepath, cmd.Classpath);
-        ClassLoader loader = new rtda.heap.ClassLoader(cp);
+        ClassLoader loader = new rtda.heap.ClassLoader(cp, cmd.verboseClassFlag);
 
         String className = cmd.Class.replace(".", "/");
         Class mainClass = loader.loadClass(className);
         Method mainMethod = mainClass.getMainMethod();
         if (null != mainMethod) {
-            Interpreter.interpreter(mainMethod);
+            Interpreter.interpreter(mainMethod, cmd.verboseInstFlag);
         } else {
             System.out.println("Main method not found in class " + className);
         }

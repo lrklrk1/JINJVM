@@ -10,9 +10,11 @@ public class ClassLoader {
 
     classpath.Classpath classpath;
     Map<String, Class> classMap;
+    boolean verboseFlag;
 
-    public ClassLoader(classpath.Classpath classpath) {
+    public ClassLoader(classpath.Classpath classpath, boolean verboseFlag) {
         this.classpath = classpath;
+        this.verboseFlag = verboseFlag;
         this.classMap = new HashMap<String, Class>();
     }
 
@@ -70,6 +72,9 @@ public class ClassLoader {
         thisClass.setInterfaces(new Class[interfaceCount]);
         ClassLoader cl = thisClass.getLoader();
         for (int i = 0; i < interfaceCount; i++) {
+            if (InterfaceNames[i] == null || InterfaceNames[i].equals("")) {
+                continue;
+            }
             thisClass.getInterfaces()[i] = cl.loadClass(InterfaceNames[i]);
         }
     }

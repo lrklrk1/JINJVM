@@ -39,4 +39,8 @@ public class Thread {
         return stack.top;
     }
 
+    public boolean isStackEmpty() {
+        return null == stack.top;
+    }
+
 }

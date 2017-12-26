@@ -76,7 +76,7 @@ public class ClassMember {
             return true;
         }
         if (isProtected()) {
-            return d == thisclass || d.isSubClassof(thisclass) ||
+            return d == thisclass || d.isSubClassOf(thisclass) ||
                     thisclass.getPackageName() == d.getPackageName();
         }
         if (isPrivate()) {

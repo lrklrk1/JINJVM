@@ -11,7 +11,7 @@ public class SourceFileAttribute implements AttributeInfo {
     }
 
     public SourceFileAttribute(ConstantPool cp) {
-        cp = cp;
+        this.cp = cp;
     }
 
     public String getFileName() {

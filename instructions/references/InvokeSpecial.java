@@ -28,9 +28,10 @@ public class InvokeSpecial {
                 System.out.println("java.lang.IncompatibleClassChangeError");
             }
 
-            object ref = frame.getOperandStack().getRefFromTop(resolvedMethod.getArgsSlotCount());
+            object ref = frame.getOperandStack().getRefFromTop(resolvedMethod.getArgsSlotCount() - 1);
             if (null == ref) {
                 System.out.println("java.lang.NullPointerException");
+                return;
             }
 
             if (resolvedMethod.getClassMember().isProtected() &&

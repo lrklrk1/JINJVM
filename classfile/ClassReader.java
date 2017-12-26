@@ -45,8 +45,8 @@ public class ClassReader {
     JVMU2[] parseU2s() {
         JVMU2 jvmu2 = parseU2();
         JVMU2[] jvmu2s = new JVMU2[jvmu2.getInt()];
-        for (JVMU2 j : jvmu2s) {
-            j = parseU2();
+        for (int i = 0; i < jvmu2s.length; i++) {
+            jvmu2s[i] = parseU2();
         }
         return jvmu2s;
     }

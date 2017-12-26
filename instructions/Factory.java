@@ -373,16 +373,16 @@ public class Factory {
                 return new TableSwitch().new TABLESWITCH();
             case 0xab:
                 return new LookUpSwitch().new LOOKUPSWITCH();
-            // case 0xac:
-            // 	return ireturn
-            // case 0xad:
-            // 	return lreturn
-            // case 0xae:
-            // 	return freturn
-            // case 0xaf:
-            // 	return dreturn
-            // case 0xb0:
-            // 	return areturn
+             case 0xac:
+             	return new Return().new IRETURN();
+             case 0xad:
+             	return new Return().new LRETURN();
+             case 0xae:
+             	return new Return().new FRETURN();
+             case 0xaf:
+             	return new Return().new DRETURN();
+             case 0xb0:
+             	return new Return().new ARETURN();
              case 0xb1:
              	return new Return().new RETURN();
             	case 0xb2:
@@ -397,10 +397,10 @@ public class Factory {
             		return new InvokeVirtual().new INVOKEVIRTUAL();
              case 0xb7:
              	return new InvokeSpecial().new INVOKESPECIAL();
-            // case 0xb8:
-            // 	return &INVOKE_STATIC{}
-            // case 0xb9:
-            // 	return &INVOKE_INTERFACE{}
+             case 0xb8:
+             	return new InvokeStatic().new INVOKESTATIC();
+             case 0xb9:
+             	return new InvokeInterface().new INVOKEINTERFACE();
             // case 0xba:
             // 	return &INVOKE_DYNAMIC{}
              case 0xbb:

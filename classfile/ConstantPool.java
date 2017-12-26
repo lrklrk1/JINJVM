@@ -63,7 +63,7 @@ public class ConstantPool {
     }
 
     String getClassName(JVMU2 index) {
-        if (index.getInt() == 0) {
+        if (index == null || index.getInt() == 0) {
             return "";
         }
         ConstantClassInfo cci = (ConstantClassInfo) getConstantInfo(index);

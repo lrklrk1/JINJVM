@@ -35,14 +35,14 @@ public class CpMethodRef extends CpMemberRef {
             System.out.println("java.lang.IncompatibleChangeError");
         }
 
-        Method mehtod = lookUpMethod(c, name, descriptor);
+        Method method = lookUpMethod(c, name, descriptor);
         if (null == method) {
             System.out.println("java.lang.NoSuchMethodError");
         }
         if (!method.getClassMember().isAccessibleTo(d)) {
             System.out.println("java.lang.IllegaAcesssError");
         }
-        this.method = mehtod;
+        this.method = method;
         return this.method;
     }
 

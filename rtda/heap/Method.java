@@ -96,6 +96,10 @@ public class Method {
     }
 
     private void calcArgSlotCount(String[] paramTypes) {
+        if (null == paramTypes) {
+            argSlotCount = 1;
+            return;
+        }
         for (String paramType : paramTypes) {
             this.argSlotCount++;
             if (paramType.equals("J") || paramType.equals("D")) {
