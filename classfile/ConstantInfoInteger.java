@@ -15,6 +15,6 @@ public class ConstantInfoInteger extends ConstantInfo implements Info {
     @Override
     public void readInfo(ClassReader reader) {
         this.value = reader.parseU4().getInt();
-        System.out.println(tag + " " + value);
+//        System.out.println(tag + " " + value);
     }
 }

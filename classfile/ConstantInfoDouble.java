@@ -19,7 +19,7 @@ public class ConstantInfoDouble extends ConstantInfo implements Info {
         low = reader.parseU4().getU4();
         high = reader.parseU4().getU4();
         value = Double.longBitsToDouble(byteToLong(low, high));
-        System.out.println(tag + " " + value);
+//        System.out.println(tag + " " + value);
     }
 
     private long byteToLong(byte[] low, byte[] high) {

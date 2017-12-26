@@ -43,15 +43,15 @@ public class ClassFile {
 
     private void readAndCheckMagic(ClassReader reader) {
         this.magic = reader.parseU4();
-        if (!String.format("%02x", magic.u4[0]).equals("ca") ||
-                !String.format("%02x", magic.u4[1]).equals("fe") ||
-                !String.format("%02x", magic.u4[2]).equals("ba") ||
-                !String.format("%02x", magic.u4[3]).equals("be")) {
+        if (String.format("%02x", magic.u4[0]).equals("ca") &&
+                String.format("%02x", magic.u4[1]).equals("fe") &&
+                String.format("%02x", magic.u4[2]).equals("ba") &&
+                String.format("%02x", magic.u4[3]).equals("be")) {
         } else {
-            System.out.print(String.format("%02x", magic.u4[0]));
-            System.out.print(String.format("%02x", magic.u4[1]));
-            System.out.print(String.format("%02x", magic.u4[2]));
-            System.out.println(String.format("%02x", magic.u4[3]));
+//            System.out.print(String.format("%02x", magic.u4[0]));
+//            System.out.print(String.format("%02x", magic.u4[1]));
+//            System.out.print(String.format("%02x", magic.u4[2]));
+//            System.out.println(String.format("%02x", magic.u4[3]));
         }
     }
 

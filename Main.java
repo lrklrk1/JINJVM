@@ -20,7 +20,7 @@ public class Main {
 //        String cmd = sc.nextLine();
 //        sc.close();
         String cmd = "java -cp " + "C:" + File.separator + "Users" + File.separator + "lrk" + File.separator +
-                "Desktop" + File.separator + "a" + File.separator + " invokeDemo";
+                "Desktop" + File.separator + "a" + File.separator + " fibonaci";
         String[] cmds = cmd.split(" ");
 
         Cmd c = Cmd.parseCmd(cmds);

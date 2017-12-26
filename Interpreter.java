@@ -62,7 +62,7 @@ public class Interpreter {
                 logInstruction(frame, inst);
             }
 
-            System.out.println("pc :" + pc + " opcode: " + opcode);
+//            System.out.println("pc :" + pc + " opcode: " + opcode);
             inst.execute(frame);
             if (thread.isStackEmpty()) {
                 break;

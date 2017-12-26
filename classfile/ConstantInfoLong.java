@@ -37,6 +37,6 @@ public class ConstantInfoLong extends ConstantInfo implements Info {
         s7 <<= 8 * 7;
         s = s0 | s1 | s2 | s3 | s4 | s5 | s6 | s7;
         this.value = s;
-        System.out.println(tag + " " + value);
+//        System.out.println(tag + " " + value);
     }
 }

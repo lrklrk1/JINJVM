@@ -13,7 +13,7 @@ public class ConstantNameAndTypeInfo extends ConstantInfo implements Info {
     public void readInfo(ClassReader reader) {
         this.nameIndex = reader.parseU2();
         this.descriptorIndex = reader.parseU2();
-        System.out.println(tag + " " + descriptorIndex + " " + nameIndex);
+//        System.out.println(tag + " " + descriptorIndex + " " + nameIndex);
     }
 
     JVMU2 getName() {

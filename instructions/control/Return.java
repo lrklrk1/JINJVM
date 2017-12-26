@@ -2,6 +2,8 @@ package instructions.control;
 
 import instructions.base.NoOperandInstruction;
 import rtda.Frame;
+import rtda.LocalVars;
+import rtda.Slot;
 import rtda.Thread;
 import rtda.heap.object;
 
@@ -10,6 +12,16 @@ public class Return {
     public class RETURN extends NoOperandInstruction {
         @Override
         public void execute(Frame frame) {
+            Slot[] sss = frame.getOperandStack().getSlots();
+            for (int i = 0; i < sss.length; i++) {
+                System.out.println("OperandStack " + i + " " + sss[i].getNum());
+            }
+            LocalVars lv = frame.getLocalVars();
+            Slot[] ss = lv.getLocalVars();
+            for (int i = 0; i < ss.length; i++) {
+                System.out.println("LocalVars " + i + " " + ss[i].getNum());
+            }
+
             frame.getThread().popFrame();
         }
     }

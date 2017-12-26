@@ -66,7 +66,7 @@ class Cmd {
         String jre = "F:" + File.separator + "java jre";
         cmd.Jrepath = jre;
         cmd.verboseClassFlag = true;
-        cmd.verboseInstFlag = true;
+        cmd.verboseInstFlag = false;
         System.out.println("java "
                 + "-jre " + cmd.Jrepath
                 + " -classpath " + cmd.Classpath

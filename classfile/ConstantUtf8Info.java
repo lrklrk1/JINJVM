@@ -21,7 +21,7 @@ public class ConstantUtf8Info extends ConstantInfo implements Info {
         try {
             convertMUTF8(bytes);
             value = new String(bytes, "UTF-8");
-            System.out.println(tag + " " + value);
+//            System.out.println(tag + " " + value);
         } catch (Exception e) {
             e.printStackTrace();
 
